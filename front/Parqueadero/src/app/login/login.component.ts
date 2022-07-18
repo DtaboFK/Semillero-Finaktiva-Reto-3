@@ -13,8 +13,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /*signUpFor(){
-    this.route.navigate(['/signUp'])
-  }*/
+  showSignUp(){
+    let loginBox = document.getElementById('loginBox');
+    let signUpForm = document.getElementById('signUpForm');
+    loginBox?.classList.toggle('hide');
+    signUpForm?.classList.toggle('hide');
+  }
 
 }
