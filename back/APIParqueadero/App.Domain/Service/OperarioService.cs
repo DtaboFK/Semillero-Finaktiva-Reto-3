@@ -13,6 +13,7 @@ namespace App.Domain.Service
     public interface IOperarioService
     {
         List<OperarioDTO> Listar();
+        List<OperarioDTO> Buscar(OperarioDTO dto);
         OperarioDTO Crear(OperarioDTO dto);
     }
     public class OperarioService : IOperarioService
@@ -30,6 +31,15 @@ namespace App.Domain.Service
         {
             var operarios = _mapper.Map<List<OperarioDTO>>(_operarioRepository.Listar());
             return operarios;
+        }
+        #endregion
+
+        #region Buscar
+        public List<OperarioDTO> Buscar(OperarioDTO dto)
+        {
+            var operario = _mapper.Map<Operario>(dto);
+            var data = _operarioRepository.Buscar(operario);
+            return _mapper.Map<List<OperarioDTO>>(data);
         }
         #endregion
 
