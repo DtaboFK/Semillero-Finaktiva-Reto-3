@@ -1,0 +1,139 @@
+.container{
+  height: 100%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+/* ========== Search Style Start ========== */
+.search{
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+.searchBox{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 1rem 1rem;
+}
+.searchBox input{
+  width: 90%;
+  height: 1.8rem;
+}
+.searchBox i{
+  position: absolute;
+  top: 8%;
+  left: 82%;
+  padding: 0.1rem;
+  font-weight: 600;
+  color: var(--color-dark-gray);
+  cursor: pointer;
+}
+.searchBox span{
+  margin: 0.3rem 0 0 1rem;
+  color: var(--color-danger);
+  transition: var(--transition);
+}
+.addUser{
+  margin: 1rem 0;
+  display: flex;
+  align-items: top;
+}
+.addUser span{
+  width: 20%;
+  height: fit-content;
+  padding: 0 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.addUser i{
+  font-size: 1.5rem;
+}
+.addUser span:hover{
+  background: var(--color-dark-gray);
+}
+/* ========== Search Style Start ========== */
+
+/* ========== Users Style Start ========== */
+.users{
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.userInfo, .addForm{
+  width: 45%;
+  margin-left: 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--color-black);
+  border-radius: 10px;
+  background: var(--color-dark-gray);
+}
+.userInfo .info, .addForm .group{
+  margin: 0.3rem 0 0.5rem 2rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.userInfo .info input, .addForm .group input, .addForm .group select{
+  width: 60%;
+  position: absolute;
+  right: 0;
+}
+.user-icon .vehicle{
+  padding: 2rem;
+  text-align: center;
+}
+.user-icon .vehicle img{
+  width: 80%;
+}
+/* ========== Users Style Start ========== */
+
+/* ========== Table Style Start ========== */
+.table{
+  height: 40%;
+}
+.table h3{
+  margin: 1rem 0 1rem 0;
+}
+.table table{
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  text-align: center;
+  background: var(--color-dark-gray);
+}
+.table table th{
+  height: 2rem;
+  border-bottom: 2px solid var(--color-white);
+}
+.table table td{
+  padding: 0.8rem 0;
+}
+.table table td button{
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.table table td button:hover{
+  color: var(--color-white);
+  background: var(--color-blue);
+}
+.table table td button:last-child{
+  margin-left: 0.5rem;
+}
+/* ========== Table Style Start ========== */
+.active{
+
+}
+.hide{
+  display: none;
+}
