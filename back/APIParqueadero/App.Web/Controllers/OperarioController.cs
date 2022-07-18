@@ -37,6 +37,25 @@ namespace App.Web.Controllers
         }
         #endregion
 
+        #region Buscar
+        [HttpPost("Login")]
+        public IActionResult Login(OperarioDTO dto)
+        {
+            Response<List<OperarioDTO>> response = new Response<List<OperarioDTO>>();
+            try
+            {
+                response.Data = service.Buscar(dto);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Header.Code = HttpCodes.NotFound;
+                response.Header.Message = ex.Message;
+                return NotFound(response);
+            }
+        }
+        #endregion
+
         #region Crear
         [HttpPost("Crear")]
         public IActionResult Crear(OperarioDTO dto)

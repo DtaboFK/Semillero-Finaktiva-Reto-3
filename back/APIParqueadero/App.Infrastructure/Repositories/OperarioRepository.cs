@@ -12,6 +12,7 @@ namespace App.Infrastructure.Repositories
     public interface IOperarioRepository : IBaseRepository<Operario>
     {
         List<Operario> Listar();
+        List<Operario> Buscar(Operario operario);
         Operario Crear(Operario operario);
     }
     public class OperarioRepository : BaseRepository<Operario>, IOperarioRepository
@@ -24,6 +25,13 @@ namespace App.Infrastructure.Repositories
         public List<Operario> Listar()
         {
             return _table.ToList();
+        }
+        #endregion
+
+        #region Buscar
+        public List<Operario> Buscar(Operario operario)
+        {
+            return _table.Where(item => item.Documento == operario.Documento && item.Clave == operario.Clave).ToList();
         }
         #endregion
 
