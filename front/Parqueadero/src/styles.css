@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-yellow: #F3E600;
+  --color-blue: #315DA9;
+  --color-gray: #D8D8D8;
+
+  --transition: .3s ease-in-out all;
+}
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.btn{
+  width: fit-content;
+  height: 1.5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-white);
+  background: var(--color-blue);
+}
+input{
+  height: 1.5rem;
+  border-radius: 5px;
+  padding-left: 0.5rem;
+}

@@ -1,0 +1,38 @@
+<div class="container">
+  <nav></nav>
+  <section>
+    <div class="loginBox">
+      <h2>Registro</h2>
+      <div class="group">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" id="name" />
+      </div>
+      <div class="group">
+        <label for="lastName">Apellidos</label>
+        <input type="text" name="lastName" id="lastName" />
+      </div>
+      <div class="group">
+        <label for="tipoDoc">Seleccione tipo de documento</label>
+        <select name="tipoDoc" id="tipoDoc">
+          <option disabled selected>Seleccione un documento. . .</option>
+          <option value="1">Tarjeta de identidad</option>
+          <option value="2">Cédula de ciudadanía</option>
+          <option value="3">Cédula de extranjería</option>
+          <option value="4">Pasaporte</option>
+        </select>
+      </div>
+      <div class="group">
+        <label for="doc">Nro. Documento</label>
+        <input type="text" name="doc" id="doc" />
+      </div>
+      <div class="group">
+        <label for="pass">Contraseña</label>
+        <input type="text" name="pass" id="pass" />
+      </div>
+      <div class="group">
+        <button type="submit" class="btn">Registrarse</button>
+        <a [href]="loginHref">Ingresar</a>
+      </div>
+    </div>
+  </section>
+</div>
