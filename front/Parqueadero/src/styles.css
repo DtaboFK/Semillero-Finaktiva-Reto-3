@@ -42,7 +42,7 @@
   background: var(--color-blue);
 }
 input, select{
-  height: 1.5rem;
+  height: 1.8rem;
   border-radius: 5px;
   padding-left: 0.5rem;
 }

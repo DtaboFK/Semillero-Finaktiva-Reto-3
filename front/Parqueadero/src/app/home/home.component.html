@@ -1,0 +1,79 @@
+<nav>
+    <a routerLink="/login">Ingresar</a>
+</nav>
+<header>
+    <div class="logo">
+        <i class="uil uil-parking-square"></i>
+        <h3>{{ title }}</h3>
+    </div>
+    <div class="heroImage"></div>
+</header>
+<section>
+    <div class="informacion">
+        <div class="info">
+            <h4>Horario de servicio</h4>
+            <h5><b>Semana:</b></h5>
+            <p>4:30 am - 11:30 pm</p>
+            <h5><b>Fines de semana :</b></h5>
+            <p>6:30 am - 9:30 pm</p>
+        </div>
+        <div class="info">
+            <h4>Tarifas</h4>
+            <h5><b>Carros:</b></h5>
+            <p>Hora: {{ tarifas.horaCarro }}</p>
+            <p>Día: {{ tarifas.diaCarro }}</p>
+            <p>Mensualidad: {{ tarifas.mesCarro }}</p>
+        </div>
+        <div class="info">
+            <h4>Tarifas</h4>
+            <h5><b>Motos:</b></h5>
+            <p>Hora: {{ tarifas.horaMoto }}</p>
+            <p>Día: {{ tarifas.diaMoto }}</p>
+            <p>Mensualidad: {{ tarifas.mesMoto }}</p>
+        </div>
+    </div>
+    <div class="tabla">
+        <table>
+            <thead>
+                <tr>
+                    <th><span class="material-symbols-outlined">directions_car</span><br />Celdas para Carro</th>
+                    <th><span class="material-symbols-outlined">two_wheeler</span><br />Celdas para Moto</th>
+                    <th><span class="material-symbols-outlined">electric_car</span><br />Celdas para Carro Eléctrico
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>10</td>
+                    <td>20</td>
+                    <td>Próximamente</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="specs">
+            <i class="uil uil-parking-square"></i>
+            <h3>{{ title }}</h3>
+        </div>
+        <div class="specs">
+            <h4>{{ title }}</h4>
+            <p>Parqueadero inteligente a la medida</p>
+            <p>NIT: 101010101-2</p>
+            <p>Código Postal: 050020</p>
+            <p>Teléfono: (604) 555 55 00</p>
+            <p>Medellín: Calle Valbuena N° 55-55</p>
+        </div>
+        <div class="specs">
+            <ul>
+                <li><a routerLink="/**">Proceso de contratación</a></li>
+                <li><a routerLink="/**">Proyección social</a></li>
+                <li><a routerLink="/**">Protección de datos personales</a></li>
+                <li><a routerLink="/**">Trabaje con nosotros</a></li>
+                <li><a routerLink="/**">Términos y condiciones</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>

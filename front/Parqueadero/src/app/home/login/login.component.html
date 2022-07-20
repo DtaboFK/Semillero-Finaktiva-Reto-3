@@ -1,0 +1,24 @@
+<nav>
+    <a routerLink="/home">Home</a>
+</nav>
+<section>
+    <div class="loginBox" id="loginBox">
+      <h2>Login</h2>
+      <form autocomplete="off" #loginForm="ngForm" (ngSubmit)="login()">
+        <div class="group">
+          <label for="doc">Documento</label>
+          <input type="text" required name="doc" placeholder="Nro. documento" #inputDoc="ngModel" [(ngModel)]="doc" />
+        </div>
+        <div class="group">
+          <label for="pass">Contraseña</label>
+          <input type="password" required name="pass" placeholder="Password" #inputPass="ngModel" [(ngModel)]="pass" />
+        </div>
+        <div class="group">
+          <button type="submit" class="btn" [disabled]="loginForm.invalid">Ingresar</button>
+        </div>
+        <div class="group">
+          <a routerLink="/signUp">¿No tienes cuenta? - Registrarte</a>
+        </div>
+      </form>
+    </div>
+  </section>
