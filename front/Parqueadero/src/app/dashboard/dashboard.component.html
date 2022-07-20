@@ -1,40 +1,36 @@
 <section>
-  <div class="modules">
-      <div class="top">
-          <span><i class="uil uil-parking-square"></i></span>
-          <h3>Parking Spot</h3>
-      </div>
-      <div class="buttons">
-          <button>
-              <i class="uil uil-users-alt"></i>
-              Usuarios
-          </button>
-          <button>
-              <i class="uil uil-clipboard-notes"></i>
-              Ingresos
-          </button>
-          <button>
-              <i class="uil uil-inbox"></i>
-              Inbox
-          </button>
-          <button>
-              <i class="uil uil-signout"></i>
-              Logout
-          </button>
-      </div>
-  </div>
-  <div class="main">
-    <app-usuarios></app-usuarios>
-  </div>
-  <div class="profile">
-      <div class="userInfo">
-          <div class="message">
-              <p>Hola, <b>Nombre</b></p>
-              <span>Rol</span>
-          </div>
-          <div class="pic">
-              <span><i class="uil uil-user-circle"></i></span>
-          </div>
-      </div>
-  </div>
+    <div class="modules">
+        <div class="top">
+            <span><i class="uil uil-parking-square"></i></span>
+            <h3>{{ title }}</h3>
+        </div>
+        <div class="buttons">
+            <a routerLink="">
+                <i class="uil uil-users-alt"></i>Usuarios
+            </a>
+            <a routerLink="">
+                <i class="uil uil-clipboard-notes"></i>Ingresos
+            </a>
+            <a routerLink="">
+                <i class="uil uil-inbox"></i>Inbox
+            </a>
+            <a routerLink="">
+                <i class="uil uil-signout"></i>Logout
+            </a>
+        </div>
+    </div>
+    <div class="main">
+        
+    </div>
+    <div class="profile">
+        <div class="userInfo">
+            <div class="message">
+                <p>Hola, <b>Nombre</b></p>
+                <span>Rol</span>
+            </div>
+            <div class="pic">
+                <span><i class="uil uil-user-circle"></i></span>
+            </div>
+        </div>
+    </div>
 </section>
