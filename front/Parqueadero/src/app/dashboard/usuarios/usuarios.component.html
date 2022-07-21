@@ -1,0 +1,165 @@
+<div class="container">
+    <div class="search">
+      <div class="searchBox" #searchBox>
+        <input type="text" name="seach" id="search" placeholder="Buscar Nro. documento" />
+        <i class="uil uil-search"></i>
+        <span class="hide" *ngIf="searchBox">Usuario no encontrado</span>
+      </div>
+      <!-- Botón agregar usuario -->
+      <div class="addUser hide">
+        <span>
+          <i class="uil uil-user-plus"></i>
+          Agregar Usuario
+        </span>
+      </div>
+    </div>
+    <div class="users">
+      <div class="userInfo" id="userInfo">
+        <div class="info">
+          <label>Nombre: </label>
+          <input type="text" readonly />
+        </div>
+        <div class="info">
+          <label>Apellido: </label>
+          <input type="text" readonly />
+        </div>
+        <div class="info">
+          <label>Fecha de nacimiento: </label>
+          <input type="text" readonly />
+        </div>
+        <div class="info">
+          <label>Tipo de documento: </label>
+          <input type="text" readonly />
+        </div>
+        <div class="info">
+          <label>Documento: </label>
+          <input type="text" readonly />
+        </div>
+        <div class="info">
+          <label>Contacto: </label>
+          <input type="text" readonly />
+        </div>
+        <div class="info">
+          <label>Correo: </label>
+          <input type="text" readonly />
+        </div>
+        <div class="info">
+          <label>Dirección: </label>
+          <input type="text" readonly />
+        </div>
+      </div>
+      <!-- Formulario para agregar -->
+      <div class="addForm hide" id="addForm">
+        <form autocomplete="false" #addUser="ngForm" (ngSubmit)="signUpUser()">
+          <div class="group">
+            <label for="inputName">Nombre: </label>
+            <input type="text" name="inputName" id="inputName" placeholder="Nombre" [(ngModel)]="name" />
+          </div>
+          <div class="group">
+            <label for="inputLast">Apellidos: </label>
+            <input type="text" name="inputLast" id="inputLast" placeholder="Apellidos" [(ngModel)]="lastNames" />
+          </div>
+          <div class="group">
+            <label for="inputDate">Fecha de nacimiento: </label>
+            <input type="date" name="inputDate" id="inputDate" [(ngModel)]="birthDate" />
+          </div>
+          <div class="group">
+            <label for="inputTipoDoc">Tipo de documento: </label>
+            <select name="inputTipoDoc" id="inputTipoDoc" [(ngModel)]="selected">
+                <option disabled selected>Seleccione un tipo de documento . . .</option>
+                <option *ngFor="let dni of typesDNI" value="{{ dni.value }}">{{ dni.viewValue }}</option>
+            </select>
+          </div>
+          <div class="group">
+            <label for="inputDoc">Nro.Documento: </label>
+            <input type="number" name="inputDoc" id="inputDoc" placeholder="Nro. Documento" [(ngModel)]="doc" />
+          </div>
+          <div class="group">
+            <label for="inputContact">Nro.Contacto: </label>
+            <input type="number" name="inputContact" id="inputContact" placeholder="Nro. Contacto" [(ngModel)]="contact" />
+          </div>
+          <div class="group">
+            <label for="inputMail">Correo electrónico: </label>
+            <input type="email" name="inputMail" id="inputMail" placeholder="Correo electrónico" [(ngModel)]="email" />
+          </div>
+          <div class="group">
+            <label for="inputAddress">Dirección: </label>
+            <input type="text" name="inputAddress" id="inputAddress" placeholder="Dirección" [(ngModel)]="address" />
+          </div>
+          <div class="group">
+            <button type="submit" [disabled]="addUser.invalid">Enviar</button>
+          </div>
+        </form>
+      </div>
+      <div class="user-icon">
+        <button class="vehicle" value="1">
+          <img src="../../assets/images/car.png" alt="car" />
+        </button>
+        <button class="vehicle hide" value="2">
+          <img src="../../assets/images/bike.png" alt="bike" />
+        </button>
+      </div>
+    </div>
+    <h3 class="">Mensualidades</h3>
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Nro.</th>
+            <th>Celda asignada</th>
+            <th>Fecha inicio</th>
+            <th>Fecha inicio</th>
+            <th>Valor Pagado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>01/01/2022</td>
+            <td>01/01/2022</td>
+            <td>100.000</td>
+            <td>
+              <button>Editar</button>
+              <button>Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>01/01/2022</td>
+            <td>01/01/2022</td>
+            <td>100.000</td>
+            <td>
+              <button>Editar</button>
+              <button>Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>01/01/2022</td>
+            <td>01/01/2022</td>
+            <td>100.000</td>
+            <td>
+              <button>Editar</button>
+              <button>Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>01/01/2022</td>
+            <td>01/01/2022</td>
+            <td>100.000</td>
+            <td>
+              <button>Editar</button>
+              <button>Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
