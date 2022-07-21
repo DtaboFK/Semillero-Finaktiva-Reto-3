@@ -18,6 +18,8 @@ namespace App.Domain.Contracts
             Header = new Header();
             Header.Code = HttpCodes.Ok;
             Header.Message = "SUCCESS";
+            Header.Code = HttpCodes.NotFound;
+            Header.Message = "NOT FOUND";
         }
     }
 

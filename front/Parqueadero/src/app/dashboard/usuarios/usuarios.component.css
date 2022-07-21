@@ -20,7 +20,7 @@
     width: 90%;
     height: 1.8rem;
   }
-  .searchBox i{
+  .searchBox span{
     position: absolute;
     top: 8%;
     left: 82%;
@@ -29,7 +29,7 @@
     color: var(--color-dark-gray);
     cursor: pointer;
   }
-  .searchBox span{
+  .searchBox p{
     margin: 0.3rem 0 0 1rem;
     color: var(--color-danger);
     transition: var(--transition);
