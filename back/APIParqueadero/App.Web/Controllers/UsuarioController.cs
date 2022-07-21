@@ -26,7 +26,7 @@ namespace App.Web.Controllers
             try
             {
                 response.Data = service.Listar();
-                return Ok(response);
+                return Ok(response.Data);
             }
             catch (Exception ex)
             {
@@ -45,7 +45,15 @@ namespace App.Web.Controllers
             try
             {
                 response.Data = service.Buscar(dto);
-                return Ok(response);
+                if (response.Data.Count == 1)
+                {
+                    return Ok(response.Data);
+                }
+                else
+                {
+                    response.Header.Code = HttpCodes.NotFound;
+                    return NotFound(response.Header);
+                }
             }
             catch (Exception ex)
             {

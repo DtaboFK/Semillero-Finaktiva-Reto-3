@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-export interface DNI {
-  value: string,
-  viewValue: string
-}
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { Usuario } from "../../models/Usuario";
+import { TipoDocumento } from "../../models/TipoDocumento";
 
 @Component({
   selector: 'app-usuarios',
@@ -12,7 +10,13 @@ export interface DNI {
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
-  [x: string]: any;
+  
+  typesDNI: TipoDocumento[] = [
+    { IdTipoDoc: 1, TipoDoc: 'Tarjeta de indentidad' },
+    { IdTipoDoc: 2, TipoDoc: 'Cédula de ciudadanía' },
+    { IdTipoDoc: 3, TipoDoc: 'Cédula de extranjería' },
+    { IdTipoDoc: 4, TipoDoc: 'Pasaporte' },
+  ];
 
   name: string = '';
   lastNames: string = '';
@@ -23,16 +27,34 @@ export class UsuariosComponent implements OnInit {
   email: string = '';
   address: string = '';
 
-  constructor(private router : Router) { }
+  // usuarios: Usuario = new Usuario;
+  usuarios : any; 
+  userFound : Usuario[] = [];
+  // userFound : any;
 
-  typesDNI: DNI[] = [
-    { value: '1', viewValue: 'Tarjeta de indentidad' },
-    { value: '2', viewValue: 'Cédula de ciudadanía' },
-    { value: '3', viewValue: 'Cédula de extranjería' },
-    { value: '4', viewValue: 'Pasaporte' },
-  ];
+  constructor(private router : Router, public userService : UsuarioService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.userService.listar().subscribe(
+      // response => console.log(response)
+      // response => this.info = response
+      response => this.usuarios = response
+    );
+    
+  }
+
+  buscar() { // Exaple 1010101010
+    let doc = document.getElementById('search') as HTMLInputElement;
+    console.log(doc.value);
+    const user = {
+      documento: doc.value
+    }
+    console.log(user);
+    this.userService.buscar(user).subscribe(
+      // result => console.log(result)
+      result => this.userFound = result
+    );
+    doc.value = '';
   }
 
   signUpUser(){

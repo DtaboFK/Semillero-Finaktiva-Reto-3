@@ -1,9 +1,9 @@
 <div class="container">
     <div class="search">
-      <div class="searchBox" #searchBox>
+      <div class="searchBox">
         <input type="text" name="seach" id="search" placeholder="Buscar Nro. documento" />
-        <i class="uil uil-search"></i>
-        <span class="hide" *ngIf="searchBox">Usuario no encontrado</span>
+        <span class="material-symbols-rounded" (click)="buscar()">search</span>
+        <p *ngIf="userFound === [] ">Usuario no encontrado</p>
       </div>
       <!-- Botón agregar usuario -->
       <div class="addUser hide">
@@ -14,38 +14,38 @@
       </div>
     </div>
     <div class="users">
-      <div class="userInfo" id="userInfo">
+      <div class="userInfo" id="userInfo" *ngFor="let user of userFound">
         <div class="info">
           <label>Nombre: </label>
-          <input type="text" readonly />
+          <input type="text" readonly [value]="user.Nombre" />
         </div>
         <div class="info">
           <label>Apellido: </label>
-          <input type="text" readonly />
+          <input type="text" readonly [value]="user.Apellido" />
         </div>
         <div class="info">
           <label>Fecha de nacimiento: </label>
-          <input type="text" readonly />
+          <input type="text" readonly [value]="user.FechaNacimiento" />
         </div>
         <div class="info">
           <label>Tipo de documento: </label>
-          <input type="text" readonly />
+          <input type="text" readonly [value]="user.IdTipoDoc" />
         </div>
         <div class="info">
           <label>Documento: </label>
-          <input type="text" readonly />
+          <input type="text" readonly [value]="user.Documento" />
         </div>
         <div class="info">
           <label>Contacto: </label>
-          <input type="text" readonly />
+          <input type="text" readonly [value]="user.Contacto" />
         </div>
         <div class="info">
           <label>Correo: </label>
-          <input type="text" readonly />
+          <input type="text" readonly [value]="user.Correo" />
         </div>
         <div class="info">
           <label>Dirección: </label>
-          <input type="text" readonly />
+          <input type="text" readonly [value]="user.Direccion" />
         </div>
       </div>
       <!-- Formulario para agregar -->
@@ -67,7 +67,7 @@
             <label for="inputTipoDoc">Tipo de documento: </label>
             <select name="inputTipoDoc" id="inputTipoDoc" [(ngModel)]="selected">
                 <option disabled selected>Seleccione un tipo de documento . . .</option>
-                <option *ngFor="let dni of typesDNI" value="{{ dni.value }}">{{ dni.viewValue }}</option>
+                <option *ngFor="let dni of typesDNI" value="{{ dni.IdTipoDoc }}">{{ dni.TipoDoc }}</option>
             </select>
           </div>
           <div class="group">
@@ -91,17 +91,48 @@
           </div>
         </form>
       </div>
-      <div class="user-icon">
+      <div class="user-icon hide">
         <button class="vehicle" value="1">
           <img src="../../assets/images/car.png" alt="car" />
         </button>
-        <button class="vehicle hide" value="2">
+        <button class="vehicle" value="2">
           <img src="../../assets/images/bike.png" alt="bike" />
         </button>
       </div>
     </div>
-    <h3 class="">Mensualidades</h3>
+    <!-- Prueba -->
+    <!-- <h3>Usuarios registrados</h3>
     <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Fecha de nacimiento</th>
+            <th>Tipo de documento</th>
+            <th>Nro. Documento</th>
+            <th>Contacto</th>
+            <th>Correo</th>
+            <th>Dirección</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of usuarios">
+            <td>{{ user.nombre }}</td>
+            <td>{{ user.apellido }}</td>
+            <td>{{ user.fechaNacimiento }}</td>
+            <td>{{ user.idTipoDoc }}</td>
+            <td>{{ user.documento }}</td>
+            <td>{{ user.contacto }}</td>
+            <td>{{ user.correo }}</td>
+            <td>{{ user.direccion }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
+    <!-- Fin Prueba -->
+    <h3 class="hide">Mensualidades</h3>
+    <div class="table hide">
       <table>
         <thead>
           <tr>

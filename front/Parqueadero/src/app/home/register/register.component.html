@@ -1,39 +1,39 @@
 <nav>
-    <a routerLink="/home">Home</a>
+  <a routerLink="/home"><span class="material-symbols-rounded">home</span>Home</a>
 </nav>
 <section>
-    <div class="signUpBox" id="signUpForm">
-        <h2>Registro</h2>
-        <form autocomplete="off" #signUpForm="ngForm" (ngSubmit)="signUp()">
-          <div class="group">
-            <label for="name">Nombre</label>
-            <input type="text" name="name" id="name" placeholder="Nombre" [(ngModel)]="name" />
-          </div>
-          <div class="group">
-            <label for="lastName">Apellidos</label>
-            <input type="text" name="lastName" id="lastName" placeholder="Apellidos" [(ngModel)]="lastName" />
-          </div>
-          <div class="group">
-            <label for="tipoDoc">Tipo de documento</label>
-            <select name="tipoDoc" id="tipoDoc" [(ngModel)]="selected">
-                <option disabled selected>Seleccione un tipo de documento . . .</option>
-                <option *ngFor="let dni of typesDNI" value="{{ dni.value }}">{{ dni.viewValue }}</option>
-            </select>
-          </div>
-          <div class="group">
-            <label for="doc">Nro. Documento</label>
-            <input type="text" name="doc" id="doc" placeholder="Nro. documento" [(ngModel)]="doc" />
-          </div>
-          <div class="group">
-            <label for="pass">Contraseña</label>
-            <input type="password" name="pass" id="pass" placeholder="Password" [(ngModel)]="pass" />
-          </div>
-          <div class="group">
-            <button type="submit" class="btn" [disabled]="signUpForm.invalid">Registrarse</button>
-          </div>
-          <div class="group">
-            <a routerLink="/login">¿Ya tienes cuenta? - Ingresa ahora</a>
-          </div>
-        </form>
-    </div>
+  <div class="signUpBox" id="signUpForm">
+    <h2>Registro</h2>
+    <form autocomplete="off" #signUpForm="ngForm" (ngSubmit)="signUp()">
+      <div class="group">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" id="name" placeholder="Nombre" [(ngModel)]="name" />
+      </div>
+      <div class="group">
+        <label for="lastName">Apellidos</label>
+        <input type="text" name="lastName" id="lastName" placeholder="Apellidos" [(ngModel)]="lastName" />
+      </div>
+      <div class="group">
+        <label for="tipoDoc">Tipo de documento</label>
+        <select name="tipoDoc" id="tipoDoc" [(ngModel)]="selected">
+          <option disabled selected>Seleccione un tipo de documento . . .</option>
+          <option *ngFor="let dni of typesDNI" value="{{ dni.value }}">{{ dni.viewValue }}</option>
+        </select>
+      </div>
+      <div class="group">
+        <label for="doc">Nro. Documento</label>
+        <input type="text" name="doc" id="doc" placeholder="Nro. documento" [(ngModel)]="doc" />
+      </div>
+      <div class="group">
+        <label for="pass">Contraseña</label>
+        <input type="password" name="pass" id="pass" placeholder="Password" [(ngModel)]="pass" />
+      </div>
+      <div class="group">
+        <button type="submit" class="btn" [disabled]="signUpForm.invalid">Registrarse</button>
+      </div>
+      <div class="group">
+        <a routerLink="/login">¿Ya tienes cuenta? - Ingresa ahora</a>
+      </div>
+    </form>
+  </div>
 </section>
