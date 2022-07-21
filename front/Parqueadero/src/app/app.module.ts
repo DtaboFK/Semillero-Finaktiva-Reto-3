@@ -10,6 +10,14 @@ import { LoginComponent } from './home/login/login.component';
 import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
 import { RegisterComponent } from './home/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UsuariosComponent } from './dashboard/usuarios/usuarios.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard/usuarios', component: UsuariosComponent}
+];
 
 @NgModule({
   declarations: [
@@ -18,12 +26,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginComponent,
     PageNotFoundComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

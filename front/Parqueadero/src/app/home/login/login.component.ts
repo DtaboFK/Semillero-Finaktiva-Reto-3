@@ -16,8 +16,8 @@ export class LoginComponent {
 
   login(){
     const operario = {
-      documento: this.doc,
-      clave: this.pass
+      Documento: this.doc,
+      Clave: this.pass
     };
     console.log(operario);
     this.router.navigate(['/dashboard']);
