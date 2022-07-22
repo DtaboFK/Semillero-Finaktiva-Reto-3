@@ -5,22 +5,22 @@
             <h3>{{ title }}</h3>
         </div>
         <div class="buttons">
-            <a routerLink="usuarios">
+            <button (click)="desplegar('usuario')">
                 <span class="material-symbols-outlined">group</span>Usuarios
-            </a>
-            <a routerLink="">
+            </button>
+            <button (click)="desplegar('ingreso')">
                 <span class="material-symbols-outlined">assignment</span>Ingresos
-            </a>
-            <a routerLink="">
+            </button>
+            <button (click)="desplegar('inbox')">
                 <span class="material-symbols-outlined">inbox</span>Inbox
-            </a>
-            <a routerLink="">
+            </button>
+            <button (click)="desplegar('logout')">
                 <span class="material-symbols-outlined">logout</span>Logout
-            </a>
+            </button>
         </div>
     </div>
     <div class="main">
-        <app-usuarios></app-usuarios>
+        <app-usuarios *ngIf="option == 'usuario'"></app-usuarios>
     </div>
     <div class="profile">
         <div class="userInfo">
