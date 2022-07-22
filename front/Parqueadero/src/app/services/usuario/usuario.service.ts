@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Usuario } from "../../models/Usuario";
 import { Observable } from 'rxjs';
 
@@ -20,5 +20,13 @@ export class UsuarioService {
   buscar(user : any) : Observable<any> {
     return this.http.post(this.uriBuscar, user);
   }
+
+}
+
+export class UsuarioModal {
+  
+  constructor() {  }
+
+  $modal = new EventEmitter<any>();
 
 }

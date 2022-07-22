@@ -12,13 +12,13 @@ import { RegisterComponent } from './home/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsuariosComponent } from './dashboard/usuarios/usuarios.component';
 import { RouterModule, Routes } from '@angular/router';
-import { UsuarioService } from './services/usuario/usuario.service';
+import { UsuarioModal, UsuarioService } from './services/usuario/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalRegistroComponent } from './dashboard/usuarios/usuario-registro/modal-registro.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'dashboard/usuarios', component: UsuariosComponent}
+  { path: 'dashboard', component: DashboardComponent}
 ];
 
 @NgModule({
@@ -29,7 +29,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     RegisterComponent,
     DashboardComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    ModalRegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [UsuarioService],
+  providers: [
+    UsuarioService,
+    UsuarioModal
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,95 +1,58 @@
 <div class="container">
+  <app-modal-registro *ngIf="modalSwitch == true; else usuariosContent"></app-modal-registro>
+  
+  <ng-template #usuariosContent>
     <div class="search">
       <div class="searchBox">
-        <input type="text" name="seach" id="search" placeholder="Buscar Nro. documento" />
-        <span class="material-symbols-rounded" (click)="buscar()">search</span>
-        <p *ngIf="userFound === [] ">Usuario no encontrado</p>
+        <form (onSubmit)="buscar()">
+          <input type="text" name="seach" id="search" placeholder="Buscar Nro. documento" />
+          <button type="submit"><span class="material-symbols-rounded" (click)="buscar()">search</span></button>
+        </form>
+        <p id="error" class="hide">Usuario no encontrado</p>
       </div>
-      <!-- Botón agregar usuario -->
-      <div class="addUser hide">
-        <span>
-          <i class="uil uil-user-plus"></i>
+      <!-- Add user modal button -->
+      <div class="addUser ">
+        <button (click)="addUserModal(true)">
+          <span class="material-symbols-outlined">person_add</span>
           Agregar Usuario
-        </span>
+        </button>
       </div>
     </div>
+    <!-- User found info -->
     <div class="users">
       <div class="userInfo" id="userInfo" *ngFor="let user of userFound">
         <div class="info">
           <label>Nombre: </label>
-          <input type="text" readonly [value]="user.Nombre" />
+          <input type="text" readonly [value]="user.nombre" />
         </div>
         <div class="info">
           <label>Apellido: </label>
-          <input type="text" readonly [value]="user.Apellido" />
+          <input type="text" readonly [value]="user.apellido" />
         </div>
         <div class="info">
           <label>Fecha de nacimiento: </label>
-          <input type="text" readonly [value]="user.FechaNacimiento" />
+          <input type="text" readonly [value]="user.fechaNacimiento" />
         </div>
         <div class="info">
           <label>Tipo de documento: </label>
-          <input type="text" readonly [value]="user.IdTipoDoc" />
+          <input type="text" readonly [value]="user.idTipoDoc" />
         </div>
         <div class="info">
           <label>Documento: </label>
-          <input type="text" readonly [value]="user.Documento" />
+          <input type="text" readonly [value]="user.documento" />
         </div>
         <div class="info">
           <label>Contacto: </label>
-          <input type="text" readonly [value]="user.Contacto" />
+          <input type="text" readonly [value]="user.contacto" />
         </div>
         <div class="info">
           <label>Correo: </label>
-          <input type="text" readonly [value]="user.Correo" />
+          <input type="text" readonly [value]="user.correo" />
         </div>
         <div class="info">
           <label>Dirección: </label>
-          <input type="text" readonly [value]="user.Direccion" />
+          <input type="text" readonly [value]="user.direccion" />
         </div>
-      </div>
-      <!-- Formulario para agregar -->
-      <div class="addForm hide" id="addForm">
-        <form autocomplete="false" #addUser="ngForm" (ngSubmit)="signUpUser()">
-          <div class="group">
-            <label for="inputName">Nombre: </label>
-            <input type="text" name="inputName" id="inputName" placeholder="Nombre" [(ngModel)]="name" />
-          </div>
-          <div class="group">
-            <label for="inputLast">Apellidos: </label>
-            <input type="text" name="inputLast" id="inputLast" placeholder="Apellidos" [(ngModel)]="lastNames" />
-          </div>
-          <div class="group">
-            <label for="inputDate">Fecha de nacimiento: </label>
-            <input type="date" name="inputDate" id="inputDate" [(ngModel)]="birthDate" />
-          </div>
-          <div class="group">
-            <label for="inputTipoDoc">Tipo de documento: </label>
-            <select name="inputTipoDoc" id="inputTipoDoc" [(ngModel)]="selected">
-                <option disabled selected>Seleccione un tipo de documento . . .</option>
-                <option *ngFor="let dni of typesDNI" value="{{ dni.IdTipoDoc }}">{{ dni.TipoDoc }}</option>
-            </select>
-          </div>
-          <div class="group">
-            <label for="inputDoc">Nro.Documento: </label>
-            <input type="number" name="inputDoc" id="inputDoc" placeholder="Nro. Documento" [(ngModel)]="doc" />
-          </div>
-          <div class="group">
-            <label for="inputContact">Nro.Contacto: </label>
-            <input type="number" name="inputContact" id="inputContact" placeholder="Nro. Contacto" [(ngModel)]="contact" />
-          </div>
-          <div class="group">
-            <label for="inputMail">Correo electrónico: </label>
-            <input type="email" name="inputMail" id="inputMail" placeholder="Correo electrónico" [(ngModel)]="email" />
-          </div>
-          <div class="group">
-            <label for="inputAddress">Dirección: </label>
-            <input type="text" name="inputAddress" id="inputAddress" placeholder="Dirección" [(ngModel)]="address" />
-          </div>
-          <div class="group">
-            <button type="submit" [disabled]="addUser.invalid">Enviar</button>
-          </div>
-        </form>
       </div>
       <div class="user-icon hide">
         <button class="vehicle" value="1">
@@ -192,5 +155,5 @@
         </tbody>
       </table>
     </div>
-  </div>
-  
+  </ng-template>
+</div>

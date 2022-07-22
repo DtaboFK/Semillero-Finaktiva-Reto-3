@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/services/usuario/usuario.service';
-import { Usuario } from "../../models/Usuario";
-import { TipoDocumento } from "../../models/TipoDocumento";
+import { UsuarioModal, UsuarioService } from 'src/app/services/usuario/usuario.service';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -10,29 +8,13 @@ import { TipoDocumento } from "../../models/TipoDocumento";
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
-  
-  typesDNI: TipoDocumento[] = [
-    { IdTipoDoc: 1, TipoDoc: 'Tarjeta de indentidad' },
-    { IdTipoDoc: 2, TipoDoc: 'Cédula de ciudadanía' },
-    { IdTipoDoc: 3, TipoDoc: 'Cédula de extranjería' },
-    { IdTipoDoc: 4, TipoDoc: 'Pasaporte' },
-  ];
-
-  name: string = '';
-  lastNames: string = '';
-  birthDate: string = '';
-  selected: string = 'Seleccione un tipo de documento . . .';
-  doc: string = '';
-  contact: string = '';
-  email: string = '';
-  address: string = '';
 
   // usuarios: Usuario = new Usuario;
   usuarios : any; 
-  userFound : Usuario[] = [];
-  // userFound : any;
+  // userFound : Usuario[] = [];
+  userFound : any;
 
-  constructor(private router : Router, public userService : UsuarioService) { }
+  constructor(public userService : UsuarioService, private modal : UsuarioModal) { }
 
   ngOnInit() {
     this.userService.listar().subscribe(
@@ -40,7 +22,14 @@ export class UsuariosComponent implements OnInit {
       // response => this.info = response
       response => this.usuarios = response
     );
-    
+    this.modal.$modal.subscribe(valor => {
+      this.modalSwitch = valor
+    });
+  }
+
+  modalSwitch : boolean = true;
+  addUserModal(turn : boolean) {
+    this.modalSwitch = turn;
   }
 
   buscar() { // Exaple 1010101010
@@ -57,19 +46,6 @@ export class UsuariosComponent implements OnInit {
     doc.value = '';
   }
 
-  signUpUser(){
-    const user = {
-      Nombre: this.name,
-      Apellido: this.lastNames,
-      FechaNacimiento: this.birthDate,
-      IdTipoDoc: this.selected,
-      Documento: this.doc,
-      Contacto: this.contact,
-      Correo: this.email,
-      Direccion: this.address
-    }
-    console.log(user);
-    this.router.navigate(['/home']);
-  }
+  
 
 }

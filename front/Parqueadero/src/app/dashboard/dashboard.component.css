@@ -30,7 +30,7 @@ section{
     flex-direction: column;
     gap: 0.2rem;
   }
-  .buttons a{
+  .buttons button{
     padding: 1rem;
     border-radius: 0.5rem;
     font-size: 1rem;
@@ -41,31 +41,31 @@ section{
     cursor: pointer;
     transition: var(--transition);
   }
-  .buttons a span{
+  .buttons button span{
     font-size: 2rem;
     padding-right: 1rem;
     transition: var(--transition);
   }
-  .buttons a:last-child{
+  .buttons button:last-child{
     width: 15%;
     position: absolute;
     bottom: 0.5rem;
   }
-  .buttons a.active{
+  .buttons button.active{
     margin-left: 0.5rem;
     color: var(--color-white);
     background-color: var(--color-blue);
   }
-  .buttons a.active span{
+  .buttons button.active span{
     color: var(--color-white);
   }
-  .buttons a:hover{
+  .buttons button:hover{
     color: var(--color-white);
     background: var(--color-blue);
     border: 1px solid var(--color-blue);
     transform: translateX(0.5rem);
   }
-  .buttons a:hover span{
+  .buttons button:hover span{
     color: var(--color-white);
   }
   /* ========== Modules Style End ========== */
