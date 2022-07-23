@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalRegistroComponent } from './modal-registro.component';
+import { ModalRegistroComponent } from './usuario-registro.component';
 
 describe('ModalRegistroComponent', () => {
   let component: ModalRegistroComponent;

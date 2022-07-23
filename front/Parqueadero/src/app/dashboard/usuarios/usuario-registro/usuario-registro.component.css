@@ -2,6 +2,10 @@
     width: 100%;
     padding: 1rem 2rem;
 }
+.nav{
+    display: flex;
+    justify-content: space-between;
+}
 .btnBack{
     height: 1.8rem;
     display: flex;
@@ -10,16 +14,27 @@
     padding: 0 0.3rem 0 0;
     gap: 0.3rem;
 }
-.btnBack span{
+.btnFoward{
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0 0 0 0.3rem;
+    gap: 0.3rem;
+}
+.btnBack span, .btnFoward span{
     font-size: 1.3rem;
     transition: var(--transition);
 }
 .btnBack:hover span{
     color: var(--colo-white);
 }
+.btnFoward:hover span{
+    color: var(--colo-white);
+}
 /* ========== Add Form Style Start ========== */
 .addForm{
-    width: 100%;
+    width: 60%;
     height: 100%;
     margin-top: 2rem;
 }
@@ -31,16 +46,14 @@
     padding: 1rem;
     border: 2px solid var(--color-black);
     border-radius: 1rem;
-    
     background-color: var(--color-dark-gray);
 }
 .addForm form .userInfo{
-    width: 55%;
+    width: 100%;
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-    
+    gap: 2.3rem;
 }
 .addForm form .userInfo h3 {
     margin-bottom: 1rem;
@@ -50,15 +63,29 @@
     display: flex;
     align-items: center;
     position: relative;
-    
 }
 .addForm form .userInfo .group label{
     color: var(--color-white);
 }
-.group input, select{
+.group input, select, p{
     width: 50%;
     position: absolute;
     right: 0;
+    transition: var(--transition);
+}
+.group input:focus, select:focus{
+    outline: 3px solid var(--color-white);
+}
+.group p{
+    width: fit-content;
+    padding: 0 0.3rem;
+    border-radius: 5px;
+    top: 1.5rem;
+    right: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-white);
+    background-color: var(--color-danger);
 }
 /* Vehicle Style */
 .addForm form .userVehicle{
@@ -69,20 +96,29 @@
     gap: 0.5rem;
 }
 .addForm form .userVehicle h3{
-    margin-bottom: 1rem;
+    margin-bottom: 10%;
     color: var(--color-white);
+}
+.userVehicle button{
+    cursor: pointer;
 }
 .userVehicle .vehicle{
     text-align: center;
 }
 .userVehicle .vehicle:nth-child(2) img{
-    width: 60%;
+    width: 100%;
 }
 .userVehicle .vehicle:nth-child(3) img{
-    width: 40%;
+    width: 50%;
 }
 /* ========== Add Form Style End ========== */
 .active {
     border: 2px solid var(--color-white);
     background-color: var(--color-blue);
+}
+.valid{
+    outline: 3px solid var(--color-success);
+}
+.invalid{
+    outline: 3px solid var(--color-danger);
 }

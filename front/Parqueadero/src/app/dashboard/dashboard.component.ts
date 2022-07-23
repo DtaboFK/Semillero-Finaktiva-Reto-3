@@ -9,7 +9,7 @@ export class DashboardComponent implements OnInit {
 
   title = 'ParkingSmart';
 
-  option : string = 'usuario';
+  option : string = '';
 
   constructor() { }
 

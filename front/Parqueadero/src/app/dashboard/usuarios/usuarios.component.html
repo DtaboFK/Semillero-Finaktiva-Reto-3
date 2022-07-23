@@ -4,7 +4,7 @@
   <ng-template #usuariosContent>
     <div class="search">
       <div class="searchBox">
-        <form (onSubmit)="buscar()">
+        <form autocomplete="off" (onSubmit)="buscar()">
           <input type="text" name="seach" id="search" placeholder="Buscar Nro. documento" />
           <button type="submit"><span class="material-symbols-rounded" (click)="buscar()">search</span></button>
         </form>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +14,8 @@ import { UsuariosComponent } from './dashboard/usuarios/usuarios.component';
 import { RouterModule, Routes } from '@angular/router';
 import { UsuarioModal, UsuarioService } from './services/usuario/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ModalRegistroComponent } from './dashboard/usuarios/usuario-registro/modal-registro.component';
+import { ModalRegistroComponent } from './dashboard/usuarios/usuario-registro/usuario-registro.component';
+import { VehiculoRegistroComponent } from './dashboard/usuarios/vehiculo-registro/vehiculo-registro.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,14 +31,16 @@ const appRoutes: Routes = [
     RegisterComponent,
     DashboardComponent,
     UsuariosComponent,
-    ModalRegistroComponent
+    ModalRegistroComponent,
+    VehiculoRegistroComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     UsuarioService,
