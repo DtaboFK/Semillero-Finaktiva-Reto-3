@@ -1,0 +1,153 @@
+<div class="container">
+    <div class="nav">
+        <button class="btnBack" (click)="turnBack()">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Volver
+        </button>
+        <button class="btnFoward" (click)="next()" [disabled]="addUser.invalid">
+            Seguir
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+    </div>
+    <!-- Formulario para agregar usuario -->
+    <div class="addForm" id="addForm">
+        <form autocomplete="false" (ngSubmit)="onSubmit()" [formGroup]="addUser">
+            <div class="userInfo">
+                <h3>Registrar Usuario</h3>
+                <div class="group">
+                    <!-- Nombre -->
+                    <label for="inputName">Nombre: </label>
+                    <input type="text" name="inputName" id="inputName" placeholder="Nombre" formControlName="Nombre"
+                        [class.invalid]="addUser.get('Nombre')?.touched && 
+                    addUser.get('Nombre')?.errors?.['required']" [class.invalid]="addUser.get('Nombre')?.touched && 
+                    addUser.get('Nombre')?.errors?.['pattern']" [class.valid]="!(addUser.get('Nombre')?.touched && 
+                    addUser.get('Nombre')?.errors?.['required']) && 
+                    addUser.get('Nombre')?.valid" />
+                    <p *ngIf="addUser.get('Nombre')?.touched &&
+                    addUser.get('Nombre')?.errors?.['required']">
+                        Este campo es requerido
+                    </p>
+                    <p *ngIf="addUser.get('Nombre')?.touched && 
+                    addUser.get('Nombre')?.errors?.['pattern']">
+                        No se permiten números
+                    </p>
+                </div>
+                <div class="group">
+                    <!-- Apellidos -->
+                    <label for="inputLast">Apellidos: </label>
+                    <input type="text" name="inputLast" id="inputLast" placeholder="Apellidos"
+                        formControlName="Apellido" [class.invalid]="addUser.get('Apellido')?.touched && 
+                    addUser.get('Apellido')?.errors?.['required']" [class.invalid]="addUser.get('Apellido')?.touched && 
+                    addUser.get('Apellido')?.errors?.['pattern']" [class.valid]="!(addUser.get('Apellido')?.touched && 
+                    addUser.get('Apellido')?.errors?.['required']) && 
+                    addUser.get('Apellido')?.valid" />
+                    <p *ngIf="addUser.get('Apellido')?.touched && 
+                    addUser.get('Apellido')?.errors?.['required']">
+                        Este campo es requerido
+                    </p>
+                    <p *ngIf="addUser.get('Apellido')?.touched && 
+                    addUser.get('Apellido')?.errors?.['pattern']">
+                        No se permiten números
+                    </p>
+                </div>
+                <div class="group">
+                    <!-- Fecha de nacimiento -->
+                    <label for="inputDate">Fecha de nacimiento: </label>
+                    <input type="date" name="inputDate" id="inputDate" formControlName="FechaNacimiento"
+                        [class.invalid]="addUser.get('FechaNacimiento')?.touched && 
+                    addUser.get('FechaNacimiento')?.errors?.['required']" [class.valid]="!(addUser.get('FechaNacimiento')?.touched && 
+                    addUser.get('FechaNacimiento')?.errors?.['required']) && 
+                    addUser.get('FechaNacimiento')?.valid" />
+                    <p *ngIf="addUser.get('FechaNacimiento')?.touched && 
+                    addUser.get('FechaNacimiento')?.errors?.['required']">
+                        Este campo es requerido
+                    </p>
+                </div>
+                <div class="group">
+                    <!-- Tipo de documento -->
+                    <label for="inputTipoDoc">Tipo de documento: </label>
+                    <select name="inputTipoDoc" id="inputTipoDoc" required formControlName="IdTipoDoc" [class.invalid]="addUser.get('IdTipoDoc')?.touched && 
+                    !addUser.get('IdTipoDoc')?.dirty" [class.valid]="!addUser.get('IdTipoDoc')?.pristine">
+                        <option disabled selected>Seleccione un tipo de documento . . .</option>
+                        <option *ngFor="let dni of typesDNI" value="{{ dni.IdTipoDoc }}">{{ dni.TipoDoc }}</option>
+                    </select>
+                    <p *ngIf="addUser.get('IdTipoDoc')?.touched &&
+                    !addUser.get('IdTipoDoc')?.dirty">
+                        Este campo es requerido
+                    </p>
+                </div>
+                <div class="group">
+                    <!-- Número de documento -->
+                    <label for="inputDoc">Nro.Documento: </label>
+                    <input type="text" name="inputDoc" id="inputDoc" placeholder="Nro. Documento"
+                        formControlName="Documento" [class.invalid]="addUser.get('Documento')?.touched && 
+                    addUser.get('Documento')?.errors?.['required']" [class.invalid]="addUser.get('Documento')?.touched && 
+                    addUser.get('Documento')?.errors?.['pattern']" [class.valid]="!(addUser.get('Documento')?.touched && 
+                    addUser.get('Documento')?.errors?.['required']) && 
+                    addUser.get('Documento')?.valid" />
+                    <p *ngIf="addUser.get('Documento')?.touched && 
+                    addUser.get('Documento')?.errors?.['required']">
+                        Este campo es requerido
+                    </p>
+                    <p *ngIf="addUser.get('Documento')?.touched && 
+                    addUser.get('Documento')?.errors?.['pattern']">
+                        No se permiten letras
+                    </p>
+                </div>
+                <div class="group">
+                    <!-- Número de contacto -->
+                    <label for="inputContact">Nro.Contacto: </label>
+                    <input type="text" name="inputContact" id="inputContact" placeholder="Nro. Contacto"
+                        formControlName="Contacto" [class.invalid]="addUser.get('Contacto')?.touched && 
+                    addUser.get('Contacto')?.errors?.['required']" [class.invalid]="addUser.get('Contacto')?.touched && 
+                    addUser.get('Contacto')?.errors?.['pattern']" [class.valid]="!(addUser.get('Contacto')?.touched && 
+                    addUser.get('Contacto')?.errors?.['required']) && 
+                    addUser.get('Contacto')?.valid" />
+                    <p *ngIf="addUser.get('Contacto')?.touched && 
+                    addUser.get('Contacto')?.errors?.['required']">
+                        Este campo es requerido
+                    </p>
+                    <p *ngIf="addUser.get('Contacto')?.touched && 
+                    addUser.get('Contacto')?.errors?.['pattern']">
+                        No se permiten letras
+                    </p>
+                </div>
+                <div class="group">
+                    <!-- Correo electrónico -->
+                    <label for="inputMail">Correo electrónico: </label>
+                    <input type="email" name="inputMail" id="inputMail" placeholder="Correo electrónico"
+                        formControlName="Correo" [class.invalid]="addUser.get('Correo')?.touched && 
+                    addUser.get('Correo')?.errors?.['required']" [class.invalid]="addUser.get('Correo')?.touched && 
+                    addUser.get('Correo')?.errors?.['pattern']" [class.valid]="!(addUser.get('Correo')?.touched && 
+                    addUser.get('Correo')?.errors?.['required']) && 
+                    addUser.get('Correo')?.valid" />
+                    <p *ngIf="addUser.get('Correo')?.touched && 
+                    addUser.get('Correo')?.errors?.['required']">
+                        Este campo es requerido
+                    </p>
+                    <p *ngIf="addUser.get('Correo')?.touched && 
+                    addUser.get('Correo')?.errors?.['pattern']">
+                        Ingrese un correo válido
+                    </p>
+                </div>
+                <div class="group">
+                    <!-- Dirección -->
+                    <label for="inputAddress">Dirección: </label>
+                    <input type="text" name="inputAddress" id="inputAddress" placeholder="Dirección"
+                        formControlName="Direccion" [class.invalid]="addUser.get('Direccion')?.touched && 
+                    addUser.get('Direccion')?.errors?.['required']" [class.invalid]="addUser.get('Direccion')?.touched && 
+                    addUser.get('Direccion')?.errors?.['pattern']" [class.valid]="!(addUser.get('Direccion')?.touched && 
+                    addUser.get('Direccion')?.errors?.['required']) && 
+                    addUser.get('Direccion')?.valid" />
+                    <p *ngIf="addUser.get('Direccion')?.touched && 
+                    addUser.get('Direccion')?.errors?.['required']">
+                        Este campo es requerido
+                    </p>
+                </div>
+                <div class="group">
+                    <button type="submit" [disabled]="addUser.invalid">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

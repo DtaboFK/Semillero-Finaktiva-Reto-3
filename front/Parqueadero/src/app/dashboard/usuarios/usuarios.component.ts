@@ -27,21 +27,19 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
-  modalSwitch : boolean = true;
+  modalSwitch : boolean = false;
   addUserModal(turn : boolean) {
     this.modalSwitch = turn;
   }
 
   buscar() { // Exaple 1010101010
     let doc = document.getElementById('search') as HTMLInputElement;
-    console.log(doc.value);
     const user = {
       documento: doc.value
     }
-    console.log(user);
     this.userService.buscar(user).subscribe(
-      // result => console.log(result)
-      result => this.userFound = result
+      result => console.log(result)
+      // result => this.userFound = result
     );
     doc.value = '';
   }

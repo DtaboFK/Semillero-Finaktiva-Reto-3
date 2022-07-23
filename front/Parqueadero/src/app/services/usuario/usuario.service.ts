@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Usuario } from "../../models/Usuario";
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,8 @@ export class UsuarioService {
   }
 
   buscar(user : any) : Observable<any> {
-    return this.http.post(this.uriBuscar, user);
+    return this.http.post(this.uriBuscar, user).pipe(
+      catchError(() => throwError(() => new Error('Usuario no encontrado'))))
   }
 
 }
