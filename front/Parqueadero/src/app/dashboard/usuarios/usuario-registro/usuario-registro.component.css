@@ -1,12 +1,14 @@
-.container{
+.container {
     width: 100%;
     padding: 1rem 2rem;
 }
-.nav{
+
+.nav {
     display: flex;
     justify-content: space-between;
 }
-.btnBack{
+
+.btnBack {
     height: 1.8rem;
     display: flex;
     align-items: center;
@@ -14,7 +16,8 @@
     padding: 0 0.3rem 0 0;
     gap: 0.3rem;
 }
-.btnFoward{
+
+.btnFoward {
     height: 1.8rem;
     display: flex;
     align-items: center;
@@ -22,23 +25,29 @@
     padding: 0 0 0 0.3rem;
     gap: 0.3rem;
 }
-.btnBack span, .btnFoward span{
+
+.btnBack span,
+.btnFoward span {
     font-size: 1.3rem;
     transition: var(--transition);
 }
-.btnBack:hover span{
+
+.btnBack:hover span {
     color: var(--colo-white);
 }
-.btnFoward:hover span{
+
+.btnFoward:hover span {
     color: var(--colo-white);
 }
+
 /* ========== Add Form Style Start ========== */
-.addForm{
+.addForm {
     width: 60%;
     height: 100%;
     margin-top: 2rem;
 }
-.addForm form{
+
+.addForm form {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -48,35 +57,45 @@
     border-radius: 1rem;
     background-color: var(--color-dark-gray);
 }
-.addForm form .userInfo{
+
+.addForm form .userInfo {
     width: 100%;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 2.3rem;
 }
+
 .addForm form .userInfo h3 {
     margin-bottom: 1rem;
     color: var(--color-white);
 }
-.addForm form .userInfo .group{
+
+.addForm form .userInfo .group {
     display: flex;
     align-items: center;
     position: relative;
 }
-.addForm form .userInfo .group label{
+
+.addForm form .userInfo .group label {
     color: var(--color-white);
 }
-.group input, select, p{
+
+.group input,
+select,
+p {
     width: 50%;
     position: absolute;
     right: 0;
     transition: var(--transition);
 }
-.group input:focus, select:focus{
+
+.group input:focus,
+select:focus {
     outline: 3px solid var(--color-white);
 }
-.group p{
+
+.group p {
     width: fit-content;
     padding: 0 0.3rem;
     border-radius: 5px;
@@ -87,38 +106,47 @@
     color: var(--color-white);
     background-color: var(--color-danger);
 }
+
 /* Vehicle Style */
-.addForm form .userVehicle{
+.addForm form .userVehicle {
     width: 45%;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
-.addForm form .userVehicle h3{
+
+.addForm form .userVehicle h3 {
     margin-bottom: 10%;
     color: var(--color-white);
 }
-.userVehicle button{
+
+.userVehicle button {
     cursor: pointer;
 }
-.userVehicle .vehicle{
+
+.userVehicle .vehicle {
     text-align: center;
 }
-.userVehicle .vehicle:nth-child(2) img{
+
+.userVehicle .vehicle:nth-child(2) img {
     width: 100%;
 }
-.userVehicle .vehicle:nth-child(3) img{
+
+.userVehicle .vehicle:nth-child(3) img {
     width: 50%;
 }
+
 /* ========== Add Form Style End ========== */
 .active {
     border: 2px solid var(--color-white);
     background-color: var(--color-blue);
 }
-.valid{
+
+.valid {
     outline: 3px solid var(--color-success);
 }
-.invalid{
+
+.invalid {
     outline: 3px solid var(--color-danger);
 }

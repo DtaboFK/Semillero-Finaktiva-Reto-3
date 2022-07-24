@@ -1,38 +1,44 @@
-.container{
+.container {
   width: 100%;
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
 }
+
 /* ========== Search Style Start ========== */
-.search{
+.search {
   display: grid;
   grid-template-columns: 30% 70%;
   gap: 2rem;
 }
-.searchBox{
+
+.searchBox {
   width: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
   margin: 1rem 1rem;
 }
-.searchBox form{
+
+.searchBox form {
   display: flex;
   flex-direction: row;
   gap: 0.3rem;
 }
-.searchBox input{
+
+.searchBox input {
   width: 90%;
   height: 1.8rem;
 }
-.searchBox button{
+
+.searchBox button {
   width: fit-content;
   height: 1.8rem;
   display: flex;
   align-items: center;
 }
-.searchBox button span{
+
+.searchBox button span {
   font-size: 1.2rem;
   padding: 0;
   margin: 0;
@@ -40,20 +46,24 @@
   color: var(--color-dark-gray);
   transition: var(--transition);
 }
-.searchBox button:hover span{
+
+.searchBox button:hover span {
   color: var(--color-white);
 }
-.searchBox p{
+
+.searchBox p {
   margin: 0.3rem 0 0 1rem;
   color: var(--color-danger);
   transition: var(--transition);
 }
-.addUser{
+
+.addUser {
   margin: 1rem 0;
   display: flex;
   align-items: center;
 }
-.addUser button{
+
+.addUser button {
   width: 25%;
   height: 1.8rem;
   padding: 0 1rem;
@@ -63,98 +73,119 @@
   justify-content: space-evenly;
   transition: var(--transition);
 }
-.addUser button span{
+
+.addUser button span {
   transition: var(--transition);
 }
-.addUser button:hover span{
+
+.addUser button:hover span {
   color: var(--color-white);
 }
+
 /* ========== Search Style Start ========== */
 
 /* ========== Users Style Start ========== */
-.users{
-  height: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.userInfo{
+.users {
   width: 60%;
-  padding: 0.5rem;
+  height: 100%;
+  margin-top: 2rem;
+}
+
+.users .userInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 2px solid var(--color-black);
+  border-radius: 1rem;
+  background-color: var(--color-dark-gray);
+}
+
+.users .userInfo .resultGroup {
+  width: 100%;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--color-black);
-  border-radius: 10px;
-  background: var(--color-dark-gray);
+  gap: 2.3rem;
 }
-.userInfo .info{
-  margin: 0.5rem;
+
+.users .userInfo .resultGroup h3 {
+  margin-bottom: 1rem;
+  color: var(--color-white);
+}
+
+.users .userInfo .resultGroup .group {
   display: flex;
   align-items: center;
   position: relative;
 }
-.userInfo .info input {
+
+.users .userInfo .resultGroup .group label {
+  color: var(--color-white);
+}
+
+.group input,
+select,
+p {
   width: 50%;
   position: absolute;
   right: 0;
+  transition: var(--transition);
 }
-.user-icon{
-  width: 40%;
-  margin-left: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
+
+.group input:focus,
+select:focus {
+  outline: 3px solid var(--color-white);
 }
-.user-icon .vehicle{
-  text-align: center;
-}
-.user-icon .vehicle:nth-child(1) img{
-  width: 60%;
-}
-.user-icon .vehicle:nth-child(2) img{
-  width: 40%;
-}
+
 /* ========== Users Style Start ========== */
 
 /* ========== Table Style Start ========== */
-.table{
+.table {
   height: 40%;
   overflow-y: auto;
 }
-h3{
+
+h3 {
   margin: 0.8rem 0;
 }
-.table table{
+
+.table table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 10px;
   text-align: center;
   background: var(--color-dark-gray);
 }
-.table table th{
+
+.table table th {
   height: 2rem;
   border-bottom: 2px solid var(--color-white);
 }
-.table table td{
+
+.table table td {
   padding: 0.8rem 0;
 }
-.table table td button{
+
+.table table td button {
   padding: 0.5rem;
   border-radius: 5px;
   font-weight: 500;
   transition: var(--transition);
   cursor: pointer;
 }
-.table table td button:hover{
+
+.table table td button:hover {
   color: var(--color-white);
   background: var(--color-blue);
 }
-.table table td button:last-child{
+
+.table table td button:last-child {
   margin-left: 0.5rem;
 }
+
 /* ========== Table Style Start ========== */
-.hide{
+.hide {
   display: none;
 }

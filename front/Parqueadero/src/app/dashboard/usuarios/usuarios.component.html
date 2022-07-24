@@ -1,6 +1,6 @@
 <div class="container">
   <app-modal-registro *ngIf="modalSwitch == true; else usuariosContent"></app-modal-registro>
-  
+
   <ng-template #usuariosContent>
     <div class="search">
       <div class="searchBox">
@@ -12,7 +12,7 @@
       </div>
       <!-- Add user modal button -->
       <div class="addUser ">
-        <button (click)="addUserModal(true)">
+        <button (click)="addUser(true)">
           <span class="material-symbols-outlined">person_add</span>
           Agregar Usuario
         </button>
@@ -20,47 +20,42 @@
     </div>
     <!-- User found info -->
     <div class="users">
-      <div class="userInfo" id="userInfo" *ngFor="let user of userFound">
-        <div class="info">
-          <label>Nombre: </label>
-          <input type="text" readonly [value]="user.nombre" />
+      <div class="userInfo" *ngFor="let user of userFound">
+        <div class="resultGroup">
+          <h3>Información del usuario</h3>
+          <div class="group">
+            <label>Nombre:</label>
+            <input type="text" readonly [value]="user.nombre" />
+          </div>
+          <div class="group">
+            <label>Apellidos:</label>
+            <input type="text" readonly [value]="user.apellido" />
+          </div>
+          <div class="group">
+            <label>Fecha de nacimiento</label>
+            <input type="text" readonly [value]="user.fechaNacimiento" />
+          </div>
+          <div class="group">
+            <label>Tipo de documento:</label>
+            <input type="text" readonly [value]="user.idTipoDoc" />
+          </div>
+          <div class="group">
+            <label>Nro. Documento:</label>
+            <input type="text" readonly [value]="user.documento" />
+          </div>
+          <div class="group">
+            <label>Nro. Contacto:</label>
+            <input type="text" readonly [value]="user.contacto" />
+          </div>
+          <div class="group">
+            <label>Correo electrónico:</label>
+            <input type="text" readonly [value]="user.correo"/>
+          </div>
+          <div class="group">
+            <label>Dirección:</label>
+            <input type="text" readonly [value]="user.direccion"/>
+          </div>
         </div>
-        <div class="info">
-          <label>Apellido: </label>
-          <input type="text" readonly [value]="user.apellido" />
-        </div>
-        <div class="info">
-          <label>Fecha de nacimiento: </label>
-          <input type="text" readonly [value]="user.fechaNacimiento" />
-        </div>
-        <div class="info">
-          <label>Tipo de documento: </label>
-          <input type="text" readonly [value]="user.idTipoDoc" />
-        </div>
-        <div class="info">
-          <label>Documento: </label>
-          <input type="text" readonly [value]="user.documento" />
-        </div>
-        <div class="info">
-          <label>Contacto: </label>
-          <input type="text" readonly [value]="user.contacto" />
-        </div>
-        <div class="info">
-          <label>Correo: </label>
-          <input type="text" readonly [value]="user.correo" />
-        </div>
-        <div class="info">
-          <label>Dirección: </label>
-          <input type="text" readonly [value]="user.direccion" />
-        </div>
-      </div>
-      <div class="user-icon hide">
-        <button class="vehicle" value="1">
-          <img src="../../assets/images/car.png" alt="car" />
-        </button>
-        <button class="vehicle" value="2">
-          <img src="../../assets/images/bike.png" alt="bike" />
-        </button>
       </div>
     </div>
     <!-- Prueba -->
