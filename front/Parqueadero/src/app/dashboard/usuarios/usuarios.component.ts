@@ -16,30 +16,33 @@ export class UsuariosComponent implements OnInit {
 
   constructor(public userService : UsuarioService, private modal : UsuarioModal) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    
+  }
+
+  /*ngOnInit() : void {
     this.userService.listar().subscribe(
       // response => console.log(response)
-      // response => this.info = response
       response => this.usuarios = response
     );
     this.modal.$modal.subscribe(valor => {
       this.modalSwitch = valor
     });
-  }
+  }*/
 
   modalSwitch : boolean = false;
-  addUserModal(turn : boolean) {
+  addUser(turn : boolean) {
     this.modalSwitch = turn;
   }
 
-  buscar() { // Exaple 1010101010
+  buscar() { // Exaple 10101010
     let doc = document.getElementById('search') as HTMLInputElement;
     const user = {
       documento: doc.value
     }
     this.userService.buscar(user).subscribe(
-      result => console.log(result)
-      // result => this.userFound = result
+      // result => console.log(result)
+      result => this.userFound = result
     );
     doc.value = '';
   }
