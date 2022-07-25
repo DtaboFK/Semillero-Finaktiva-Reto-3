@@ -1,150 +1,60 @@
 <div class="container">
-  <app-modal-registro *ngIf="modalSwitch == true; else usuariosContent"></app-modal-registro>
+  <app-modal-registro
+    *ngIf="modalSwitch == true; else usuariosContent"
+  ></app-modal-registro>
 
   <ng-template #usuariosContent>
     <div class="search">
       <div class="searchBox">
         <form autocomplete="off" (onSubmit)="buscar()">
-          <input type="text" name="seach" id="search" placeholder="Buscar Nro. documento" />
-          <button type="submit"><span class="material-symbols-rounded" (click)="buscar()">search</span></button>
+          <input
+            type="text"
+            name="seach"
+            id="search"
+            placeholder="Buscar Nro. documento"
+          />
+          <button type="submit">
+            <span class="material-symbols-rounded" (click)="buscar()"
+              >search</span
+            >
+          </button>
         </form>
         <p id="error" class="hide">Usuario no encontrado</p>
       </div>
       <!-- Add user modal button -->
-      <div class="addUser ">
+      <div class="addUser">
         <button (click)="addUser(true)">
           <span class="material-symbols-outlined">person_add</span>
           Agregar Usuario
         </button>
       </div>
     </div>
-    <!-- User found info -->
-    <div class="users">
-      <div class="userInfo" *ngFor="let user of userFound">
-        <div class="resultGroup">
-          <h3>Información del usuario</h3>
-          <div class="group">
-            <label>Nombre:</label>
-            <input type="text" readonly [value]="user.nombre" />
-          </div>
-          <div class="group">
-            <label>Apellidos:</label>
-            <input type="text" readonly [value]="user.apellido" />
-          </div>
-          <div class="group">
-            <label>Fecha de nacimiento</label>
-            <input type="text" readonly [value]="user.fechaNacimiento" />
-          </div>
-          <div class="group">
-            <label>Tipo de documento:</label>
-            <input type="text" readonly [value]="user.idTipoDoc" />
-          </div>
-          <div class="group">
-            <label>Nro. Documento:</label>
-            <input type="text" readonly [value]="user.documento" />
-          </div>
-          <div class="group">
-            <label>Nro. Contacto:</label>
-            <input type="text" readonly [value]="user.contacto" />
-          </div>
-          <div class="group">
-            <label>Correo electrónico:</label>
-            <input type="text" readonly [value]="user.correo"/>
-          </div>
-          <div class="group">
-            <label>Dirección:</label>
-            <input type="text" readonly [value]="user.direccion"/>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Prueba -->
-    <!-- <h3>Usuarios registrados</h3>
     <div class="table">
+      <h3>Usuarios</h3>
       <table>
         <thead>
           <tr>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Fecha de nacimiento</th>
-            <th>Tipo de documento</th>
-            <th>Nro. Documento</th>
-            <th>Contacto</th>
-            <th>Correo</th>
-            <th>Dirección</th>
+            <th *ngFor="let campo of columnas">{{ campo }}</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let user of usuarios">
+            <td>{{ user.idUsuario }}</td>
             <td>{{ user.nombre }}</td>
             <td>{{ user.apellido }}</td>
-            <td>{{ user.fechaNacimiento }}</td>
-            <td>{{ user.idTipoDoc }}</td>
             <td>{{ user.documento }}</td>
-            <td>{{ user.contacto }}</td>
-            <td>{{ user.correo }}</td>
-            <td>{{ user.direccion }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div> -->
-    <!-- Fin Prueba -->
-    <h3 class="hide">Mensualidades</h3>
-    <div class="table hide">
-      <table>
-        <thead>
-          <tr>
-            <th>Nro.</th>
-            <th>Celda asignada</th>
-            <th>Fecha inicio</th>
-            <th>Fecha inicio</th>
-            <th>Valor Pagado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>01/01/2022</td>
-            <td>01/01/2022</td>
-            <td>100.000</td>
             <td>
-              <button>Editar</button>
-              <button>Eliminar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>01/01/2022</td>
-            <td>01/01/2022</td>
-            <td>100.000</td>
-            <td>
-              <button>Editar</button>
-              <button>Eliminar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>01/01/2022</td>
-            <td>01/01/2022</td>
-            <td>100.000</td>
-            <td>
-              <button>Editar</button>
-              <button>Eliminar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>01/01/2022</td>
-            <td>01/01/2022</td>
-            <td>100.000</td>
-            <td>
-              <button>Editar</button>
-              <button>Eliminar</button>
+              <button>
+                <span class="material-symbols-outlined">visibility</span>
+              </button>
+              <button>
+                <span class="material-symbols-outlined">edit</span>
+              </button>
+              <button>
+                <span class="material-symbols-outlined"
+                  >power_settings_new</span
+                >
+              </button>
             </td>
           </tr>
         </tbody>
