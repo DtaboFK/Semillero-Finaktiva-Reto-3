@@ -11,22 +11,21 @@ export class UsuarioService {
   uriListar: string = 'https://localhost:44350/Usuario/Listar';
   uriBuscar: string = 'https://localhost:44350/Usuario/Buscar';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  listar() : Observable<IUsuario[]> {
+  listar(): Observable<IUsuario[]> {
     return this.http.get<IUsuario[]>(this.uriListar);
   }
 
-  buscar(user : any) : Observable<any> {
-    return this.http.post(this.uriBuscar, user).pipe(
-      catchError(() => throwError(() => new Error('Usuario no encontrado'))))
+  buscar(user: any): Observable<IUsuario[]> {
+    return this.http.post<IUsuario[]>(this.uriBuscar, user);
   }
 
 }
 
 export class UsuarioModal {
-  
-  constructor() {  }
+
+  constructor() { }
 
   $modal = new EventEmitter<any>();
 

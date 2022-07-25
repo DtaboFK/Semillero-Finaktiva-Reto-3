@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,9 +14,8 @@ import { PageNotFoundComponent } from './home/page-not-found/page-not-found.comp
 import { RegisterComponent } from './home/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsuariosComponent } from './dashboard/usuarios/usuarios.component';
-import { RouterModule, Routes } from '@angular/router';
+
 import { UsuarioModal, UsuarioService } from './services/usuario/usuario.service';
-import { HttpClientModule } from '@angular/common/http';
 import { ModalRegistroComponent } from './dashboard/usuarios/usuario-registro/usuario-registro.component';
 import { VehiculoRegistroComponent } from './dashboard/usuarios/vehiculo-registro/vehiculo-registro.component';
 
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     UsuarioService,

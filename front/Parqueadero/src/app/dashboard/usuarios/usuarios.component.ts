@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IUsuario } from 'src/app/interfaces/IUsuario';
+import { Router } from '@angular/router';
+
 import { UsuarioModal, UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 
@@ -11,44 +12,69 @@ import { UsuarioModal, UsuarioService } from 'src/app/services/usuario/usuario.s
 export class UsuariosComponent implements OnInit {
 
   usuarios!: any;
-  userFound!: any;
-  columnas: string[] = ['Nro','Nombre','Apellidos','Nro. Documento','Acciones'];
+  columnas: string[] = ['Nro', 'Nombre', 'Apellidos', 'Nro. Documento', 'Acciones'];
+  searchText!: string;
 
-  constructor(public userService : UsuarioService, private modal : UsuarioModal) { }
+  constructor(public userService: UsuarioService, private modal: UsuarioModal, private router : Router) { }
 
   ngOnInit(): void {
     this.userService.listar().subscribe(
       res => this.usuarios = res
     );
-  }
-
-  /*ngOnInit() : void {
-    this.userService.listar().subscribe(
-      // response => console.log(response)
-      response => this.usuarios = response
-    );
     this.modal.$modal.subscribe(valor => {
       this.modalSwitch = valor
     });
-  }*/
+  }
 
-  modalSwitch : boolean = false;
-  addUser(turn : boolean) {
+  modalSwitch: boolean = false;
+  addUser(turn: boolean) {
     this.modalSwitch = turn;
   }
 
-  buscar() { // Exaple 10101010
-    let doc = document.getElementById('search') as HTMLInputElement;
-    const user = {
-      documento: doc.value
+  userFound!: any;
+  buscar(doc: string) {
+    const user: any = {
+      Documento: doc
     }
     this.userService.buscar(user).subscribe(
-      // result => console.log(result)
-      result => this.userFound = result
+      res => this.userFound = res
+      // res => console.log(res)
     );
-    doc.value = '';
+    let lista = document.getElementById('lista');
+    lista?.classList.toggle('hide');
   }
 
-  
+  // Presentación de datos
+  showDoc(num: number) {
+    switch (num) {
+      case 1:
+        return 'Tarjeta de identidad';
+        break;
+
+      case 2:
+        return 'Cédula de ciudadanía';
+        break;
+
+      case 3:
+        return 'Cédula de extranjería';
+        break;
+
+      case 4:
+        return 'Pasaporte';
+        break;
+      default:
+        return 'NA'
+        break;
+    }
+  }
+
+  snipDate(date: string){
+    let newDate = date.split("T",1);
+    return newDate;
+  }
+
+  goBack() {
+    this.router.navigate(['/dashboard']);
+  }
 
 }
