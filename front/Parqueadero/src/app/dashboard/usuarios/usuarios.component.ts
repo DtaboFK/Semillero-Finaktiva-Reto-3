@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IUsuario } from 'src/app/interfaces/IUsuario';
 import { UsuarioModal, UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 
@@ -9,15 +10,16 @@ import { UsuarioModal, UsuarioService } from 'src/app/services/usuario/usuario.s
 })
 export class UsuariosComponent implements OnInit {
 
-  // usuarios: Usuario = new Usuario;
-  usuarios : any; 
-  // userFound : Usuario[] = [];
-  userFound : any;
+  usuarios!: any;
+  userFound!: any;
+  columnas: string[] = ['Nro','Nombre','Apellidos','Nro. Documento','Acciones'];
 
   constructor(public userService : UsuarioService, private modal : UsuarioModal) { }
 
   ngOnInit(): void {
-    
+    this.userService.listar().subscribe(
+      res => this.usuarios = res
+    );
   }
 
   /*ngOnInit() : void {

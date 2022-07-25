@@ -10,8 +10,17 @@
   --color-danger: #d65a66;
   --color-success: #94d3a2;
   --color-warning: #ffe083;
+  --color-info: #88dfec;
+
   --color-yellow: #f3e600;
   --color-blue: #315da9;
+
+  --color-accent: #a97d31;
+  --color-analogue1: #3199a9;
+  --color-analogue2: #4131a9;
+  --color-triade: #7d31a9;
+  --color-dark-danger: #a9315d;
+
 
   --color-dark: #383838;
 
