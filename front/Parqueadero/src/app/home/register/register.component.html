@@ -2,34 +2,88 @@
   <a routerLink="/home"><span class="material-symbols-rounded">home</span>Home</a>
 </nav>
 <section>
-  <div class="signUpBox" id="signUpForm">
+  <div class="signUpBox">
     <h2>Registro</h2>
-    <form autocomplete="off" #signUpForm="ngForm" (ngSubmit)="signUp()">
+    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="registerOperario">
       <div class="group">
         <label for="name">Nombre</label>
-        <input type="text" name="name" id="name" placeholder="Nombre" [(ngModel)]="name" />
+        <input type="text" name="name" id="name" placeholder="Nombre" formControlName="Nombre" [class.invalid]="registerOperario.get('Nombre')?.touched &&
+              registerOperario.get('Nombre')?.errors?.['required']" [class.invalid]="registerOperario.get('Nombre')?.touched &&
+              registerOperario.get('Nombre')?.errors?.['pattern']" [class.valid]="!(registerOperario.get('Nombre')?.touched &&
+              registerOperario.get('Nombre')?.errors?.['required']) &&
+              registerOperario.get('Nombre')?.valid" />
+        <p *ngIf="registerOperario.get('Nombre')?.touched &&
+              registerOperario.get('Nombre')?.errors?.['required']">
+          Este campo es requerido
+        </p>
+        <p *ngIf="registerOperario.get('Nombre')?.touched && 
+                  registerOperario.get('Nombre')?.errors?.['pattern']">
+          No se permiten números
+        </p>
       </div>
       <div class="group">
         <label for="lastName">Apellidos</label>
-        <input type="text" name="lastName" id="lastName" placeholder="Apellidos" [(ngModel)]="lastName" />
+        <input type="text" name="lastName" id="lastName" placeholder="Apellidos" formControlName="Apellido"
+          [class.invalid]="registerOperario.get('Apellido')?.touched &&
+              registerOperario.get('Apellido')?.errors?.['required']" [class.invalid]="registerOperario.get('Apellido')?.touched &&
+              registerOperario.get('Apellido')?.errors?.['pattern']" [class.valid]="!(registerOperario.get('Apellido')?.touched &&
+              registerOperario.get('Apellido')?.errors?.['required']) &&
+              registerOperario.get('Apellido')?.valid" />
+        <p *ngIf="registerOperario.get('Apellido')?.touched &&
+              registerOperario.get('Apellido')?.errors?.['required']">
+          Este campo es requerido
+        </p>
+        <p *ngIf="registerOperario.get('Apellido')?.touched && 
+                  registerOperario.get('Apellido')?.errors?.['pattern']">
+          No se permiten números
+        </p>
       </div>
       <div class="group">
         <label for="tipoDoc">Tipo de documento</label>
-        <select name="tipoDoc" id="tipoDoc" [(ngModel)]="selected">
+        <select name="tipoDoc" id="tipoDoc" formControlName="IdTipoDoc" [class.invalid]="registerOperario.get('IdTipoDoc')?.touched && 
+              !registerOperario.get('IdTipoDoc')?.dirty" [class.valid]="!registerOperario.get('IdTipoDoc')?.pristine">
           <option disabled selected>Seleccione un tipo de documento . . .</option>
-          <option *ngFor="let dni of typesDNI" value="{{ dni.value }}">{{ dni.viewValue }}</option>
+          <option *ngFor="let dni of tiposDoc" value="{{ dni.IdTipoDoc }}">{{ dni.TipoDoc }}</option>
         </select>
+        <p *ngIf="registerOperario.get('IdTipoDoc')?.touched &&
+                  !registerOperario.get('IdTipoDoc')?.dirty">
+          Este campo es requerido
+        </p>
       </div>
       <div class="group">
         <label for="doc">Nro. Documento</label>
-        <input type="text" name="doc" id="doc" placeholder="Nro. documento" [(ngModel)]="doc" />
+        <input type="text" name="doc" id="doc" placeholder="Nro. documento" formControlName="Documento" [class.invalid]="registerOperario.get('Documento')?.touched && 
+                  registerOperario.get('Documento')?.errors?.['required']" [class.invalid]="registerOperario.get('Documento')?.touched && 
+                  registerOperario.get('Documento')?.errors?.['pattern']" [class.valid]="!(registerOperario.get('Documento')?.touched && 
+                  registerOperario.get('Documento')?.errors?.['required']) && 
+                  registerOperario.get('Documento')?.valid" />
+        <p *ngIf="registerOperario.get('Documento')?.touched && 
+                  registerOperario.get('Documento')?.errors?.['required']">
+          Este campo es requerido
+        </p>
+        <p *ngIf="registerOperario.get('Documento')?.touched && 
+                  registerOperario.get('Documento')?.errors?.['pattern']">
+          No se permiten letras
+        </p>
       </div>
       <div class="group">
         <label for="pass">Contraseña</label>
-        <input type="password" name="pass" id="pass" placeholder="Password" [(ngModel)]="pass" />
+        <input type="password" name="pass" id="pass" placeholder="Password" formControlName="Clave" [class.invalid]="registerOperario.get('Clave')?.touched && 
+              registerOperario.get('Clave')?.errors?.['required']" [class.invalid]="registerOperario.get('Clave')?.touched && 
+              registerOperario.get('Clave')?.errors?.['minlength']" [class.valid]="!(registerOperario.get('Clave')?.touched && 
+              registerOperario.get('Clave')?.errors?.['required']) && 
+              registerOperario.get('Clave')?.valid" />
+        <p *ngIf="registerOperario.get('Clave')?.touched && 
+                  registerOperario.get('Clave')?.errors?.['required']">
+          Este campo es requerido
+        </p>
+        <p *ngIf="registerOperario.get('Clave')?.touched && 
+                  registerOperario.get('Clave')?.errors?.['minlength']">
+          Mínimo 8 caracteres
+        </p>
       </div>
       <div class="group">
-        <button type="submit" class="btn" [disabled]="signUpForm.invalid">Registrarse</button>
+        <button type="submit" class="btn" [disabled]="registerOperario.invalid">Registrarse</button>
       </div>
       <div class="group">
         <a routerLink="/login">¿Ya tienes cuenta? - Ingresa ahora</a>
