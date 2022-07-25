@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,18 +9,25 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  doc: string = '';
-  pass: string = ''
+  login!: FormGroup;
 
-  constructor(private router: Router) { }
+  constructor(private readonly builder: FormBuilder , private router: Router) { }
 
-  login(){
-    const operario = {
-      Documento: this.doc,
-      Clave: this.pass
-    };
-    console.log(operario);
-    this.router.navigate(['/dashboard']);
-  };
+  ngOnInit(): void {
+    this.login = this.initLogin();
+  }
+
+  initLogin(): FormGroup {
+    return this.builder.group({
+      Documento: ['', [Validators.required,Validators.pattern('^[0-9]+$')]],
+      Clave: ['', Validators.required]
+    })
+  }
+
+
+  onLogin(): void {
+    console.log(this.login.value);
+    this.router.navigate(['dashboard'])
+  }
 
 }

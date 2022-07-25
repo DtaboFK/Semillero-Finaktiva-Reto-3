@@ -1,44 +1,43 @@
-import { Component } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-export interface DNI {
-  value: string,
-  viewValue: string
-}
+import { ITipoDocumento } from 'src/app/interfaces/ITipoDocumento';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
-  name: string = '';
-  lastName: string = '';
-  selected: string = 'Seleccione un tipo de documento . . .';
-  doc: string = '';
-  pass: string = '';
+  registerOperario !: FormGroup;
 
-  constructor(private router: Router) { }
+  tiposDoc: ITipoDocumento[] = [
+    { IdTipoDoc: 1, TipoDoc: 'Tarjeta de indentidad' },
+    { IdTipoDoc: 2, TipoDoc: 'Cédula de ciudadanía' },
+    { IdTipoDoc: 3, TipoDoc: 'Cédula de extranjería' },
+    { IdTipoDoc: 4, TipoDoc: 'Pasaporte' },
+  ]
 
-  typesDNI: DNI[] = [
-    { value: '1', viewValue: 'Tarjeta de indentidad' },
-    { value: '2', viewValue: 'Cédula de ciudadanía' },
-    { value: '3', viewValue: 'Cédula de extranjería' },
-    { value: '4', viewValue: 'Pasaporte' },
-  ];
+  constructor(private readonly builder: FormBuilder, private readonly router : Router) { }
 
-  signUp(){
-    const operario = {
-      Nombre: this.name,
-      Apellido: this.lastName,
-      IdTipoDoc: this.selected,
-      Documento: this.doc,
-      Clave: this.pass
-    }
-    console.log(operario);
-    this.router.navigate(['/login']);
+  ngOnInit(): void {
+    this.registerOperario = this.initForm();
+  }
+
+  initForm(): FormGroup {
+    return this.builder.group({
+      Nombre: ['', [Validators.required, Validators.pattern('[A-Za-z]*')]],
+      Apellido: ['', [Validators.required, Validators.pattern('[A-Za-z]*')]],
+      IdTipoDoc: ['Seleccione un tipo de documento . . .', Validators.required],
+      Documento: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      Clave: ['', [Validators.required, Validators.minLength(8)]]
+    })
+  }
+
+  onSubmit(): void {
+    console.log(this.registerOperario.value);
+    this.router.navigate(['login']);
   }
 
 }
