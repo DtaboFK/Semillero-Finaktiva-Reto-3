@@ -51,8 +51,7 @@ namespace App.Web.Controllers
                 }
                 else
                 {
-                    response.Header.Code = HttpCodes.NotFound;
-                    return NotFound(response.Header);
+                    return Ok(response.Data);
                 }
             }
             catch (Exception ex)
