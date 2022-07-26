@@ -1,7 +1,6 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { UsuariosComponent } from './dashboard/usuarios/usuarios.component';
 
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from './home/login/login.component';
@@ -14,7 +13,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'signUp', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'dashboard/usuarios', component: UsuariosComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

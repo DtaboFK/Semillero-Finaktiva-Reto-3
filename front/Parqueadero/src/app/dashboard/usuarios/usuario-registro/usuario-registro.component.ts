@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { TipoDocumento } from "../../../models/TipoDocumento";
 
-import { UsuarioModal } from 'src/app/services/usuario/usuario.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { IResponse } from 'src/app/interfaces/IResponse';
 
 @Component({
   selector: 'app-modal-registro',
@@ -13,7 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ModalRegistroComponent implements OnInit {
 
   addUser!: FormGroup;
-  
+
   typesDNI: TipoDocumento[] = [
     { IdTipoDoc: 1, TipoDoc: 'Tarjeta de indentidad' },
     { IdTipoDoc: 2, TipoDoc: 'Cédula de ciudadanía' },
@@ -21,21 +22,13 @@ export class ModalRegistroComponent implements OnInit {
     { IdTipoDoc: 4, TipoDoc: 'Pasaporte' },
   ];
 
-  constructor(private modalService : UsuarioModal, private readonly fb : FormBuilder) { }
+  constructor(private readonly fb: FormBuilder, private userService: UsuarioService) { }
 
   ngOnInit(): void {
     this.addUser = this.initForm();
   }
 
-  turnBack() {
-    this.modalService.$modal.emit(false);
-  }
-
-  next() {
-    
-  }
-
-  initForm() : FormGroup {
+  initForm(): FormGroup {
     return this.fb.group({
       Nombre: ['', [Validators.required, Validators.pattern('[A-Za-z]*')]],
       Apellido: ['', [Validators.required, Validators.pattern('[A-Za-z]*')]],
@@ -48,8 +41,34 @@ export class ModalRegistroComponent implements OnInit {
     })
   }
 
-  onSubmit(): void {
+  result!: IResponse;
+  onSubmit() {
     console.log(this.addUser.value);
+    this.userService.registrar(this.addUser.value).subscribe(
+      // res => this.result = res
+      res => () => {
+        this.result = res;
+        if (this.result.code == '200') {
+          this.propagar.emit('Cliente registrado con éxito');
+        } else {
+          this.propagar.emit('Cliente no registrado');
+        }
+      }
+    )
+    this.propagar.emit('hideAddForm');
+  }
+
+
+
+  // Navegabilidad
+  @Output() propagar = new EventEmitter<string>();
+
+  next() {
+
+  }
+
+  back() {
+    this.propagar.emit('hideAddForm');
   }
 
 }

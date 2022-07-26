@@ -9,15 +9,21 @@ export class DashboardComponent implements OnInit {
 
   title = 'ParkingSmart';
 
-  option : string = 'usuario';
+  option : string = '';
 
   constructor() { }
 
   ngOnInit() : void {
   }
 
-  desplegar(opcion : string){
-    this.option = opcion;
+  desplegar(opt : string){
+    
+    if (opt == this.option) {
+      this.option = '';  
+    } else {
+      this.option = opt;
+    }
+    
   }
 
 }

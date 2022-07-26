@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IUsuario } from 'src/app/interfaces/IUsuario';
-import { UsuarioModal, UsuarioService } from 'src/app/services/usuario/usuario.service';
+
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 
 @Component({
@@ -11,10 +11,10 @@ import { UsuarioModal, UsuarioService } from 'src/app/services/usuario/usuario.s
 export class UsuariosComponent implements OnInit {
 
   usuarios!: any;
-  userFound!: any;
-  columnas: string[] = ['Nro','Nombre','Apellidos','Nro. Documento','Acciones'];
+  columnas: string[] = ['Nro', 'Nombre', 'Apellidos', 'Nro. Documento', 'Acciones'];
+  searchText!: string;
 
-  constructor(public userService : UsuarioService, private modal : UsuarioModal) { }
+  constructor(public readonly userService: UsuarioService) { }
 
   ngOnInit(): void {
     this.userService.listar().subscribe(
@@ -22,33 +22,86 @@ export class UsuariosComponent implements OnInit {
     );
   }
 
-  /*ngOnInit() : void {
+  // Funciones CRUD
+  listar() {
     this.userService.listar().subscribe(
-      // response => console.log(response)
-      response => this.usuarios = response
+      res => this.usuarios = res
     );
-    this.modal.$modal.subscribe(valor => {
-      this.modalSwitch = valor
-    });
-  }*/
-
-  modalSwitch : boolean = false;
-  addUser(turn : boolean) {
-    this.modalSwitch = turn;
   }
 
-  buscar() { // Exaple 10101010
-    let doc = document.getElementById('search') as HTMLInputElement;
-    const user = {
-      documento: doc.value
+  userFound!: any;
+  buscar(doc: string) {
+    const user: any = {
+      Documento: doc
     }
     this.userService.buscar(user).subscribe(
-      // result => console.log(result)
-      result => this.userFound = result
+      res => this.userFound = res
     );
-    doc.value = '';
+    let lista = document.getElementById('lista');
+    lista?.classList.toggle('hide');
   }
 
-  
+  apiResponse(msg: string) {
+    console.log(msg);
+  }
+
+  // Presentación de datos
+  showDoc(num: number) {
+    switch (num) {
+      case 1:
+        return 'Tarjeta de identidad';
+
+      case 2:
+        return 'Cédula de ciudadanía';
+
+      case 3:
+        return 'Cédula de extranjería';
+
+      case 4:
+        return 'Pasaporte';
+      default:
+        return 'NA';
+    }
+  }
+
+  snipDate(date: string) {
+    let newDate = date.split("T", 1);
+    return newDate;
+  }
+
+  // Navegabilidad
+
+  optionSwitch: string = '';
+
+  desplegar(opt: string): void {
+    let lista = document.getElementById('lista');
+    let addForm = document.getElementById('addForm');
+    let main = document.getElementById('main');
+
+    // this.optionSwitch = opt : string;
+
+    switch (opt) {
+      case 'addUser':
+        main?.classList.toggle('hide');
+        lista?.classList.toggle('hide');
+        addForm?.classList.toggle('hide');
+        break;
+
+      case 'btnBack':
+        this.userFound = null;
+        this.listar();
+        lista?.classList.toggle('hide');
+        break;
+
+      case 'hideAddForm':
+        addForm?.classList.toggle('hide');
+        lista?.classList.toggle('hide');
+        main?.classList.toggle('hide');
+        break;
+
+      default:
+        break;
+    }
+  }
 
 }
