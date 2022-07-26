@@ -16,8 +16,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit() : void {
   }
 
-  desplegar(opcion : string){
-    this.option = opcion;
+  desplegar(opt : string){
+    
+    if (opt == this.option) {
+      this.option = '';  
+    } else {
+      this.option = opt;
+    }
+    
   }
 
 }

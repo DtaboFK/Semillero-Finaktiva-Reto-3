@@ -15,7 +15,7 @@ import { RegisterComponent } from './home/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsuariosComponent } from './dashboard/usuarios/usuarios.component';
 
-import { UsuarioModal, UsuarioService } from './services/usuario/usuario.service';
+import { UsuarioService } from './services/usuario/usuario.service';
 import { ModalRegistroComponent } from './dashboard/usuarios/usuario-registro/usuario-registro.component';
 import { VehiculoRegistroComponent } from './dashboard/usuarios/vehiculo-registro/vehiculo-registro.component';
 
@@ -46,8 +46,7 @@ const appRoutes: Routes = [
     Ng2SearchPipeModule
   ],
   providers: [
-    UsuarioService,
-    UsuarioModal
+    UsuarioService
   ],
   bootstrap: [AppComponent]
 })

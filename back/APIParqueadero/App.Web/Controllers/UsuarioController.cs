@@ -72,7 +72,7 @@ namespace App.Web.Controllers
             try
             {
                 response.Data = service.Crear(dto);
-                return Ok(response);
+                return Ok(response.Header);
             }
             catch (Exception ex)
             {

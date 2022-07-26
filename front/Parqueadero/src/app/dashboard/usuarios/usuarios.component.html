@@ -1,9 +1,11 @@
 <div class="container">
   <app-modal-registro
-    *ngIf="modalSwitch == true; else usuariosContent"
+    class="hide"
+    id="addForm"
+    (propagar)="desplegar($event)"
   ></app-modal-registro>
 
-  <ng-template #usuariosContent>
+  <div class="main" id="main">
     <div class="search">
       <div class="searchBox">
         <form autocomplete="off">
@@ -14,20 +16,18 @@
             placeholder="Buscar Nro. documento"
             [(ngModel)]="searchText"
           />
-          <button type="submit">
-            <span class="material-symbols-rounded">search</span>
-          </button>
         </form>
         <p id="error" class="hide">Usuario no encontrado</p>
       </div>
-      <!-- Add user modal button -->
+      <!-- Add user -->
       <div class="addUser">
-        <button (click)="addUser(true)">
+        <button (click)="desplegar('addUser')">
           <span class="material-symbols-outlined">person_add</span>
           Agregar Usuario
         </button>
       </div>
     </div>
+    <!-- Users list -->
     <div class="table" id="lista">
       <h3>Usuarios</h3>
       <table>
@@ -59,48 +59,57 @@
         </tbody>
       </table>
     </div>
-    <div class="users" *ngIf="userFound != null">
-      <button (click)="goBack()">
-        <span class="material-symbols-outlined">arrow_back</span>
-        Volver
-      </button>
-      <div class="userInfo">
-        <div class="resultGroup" *ngFor="let info of userFound">
-          <h3>Información del usuario</h3>
-          <div class="group">
-            <label>Nombre:</label>
-            <input readonly [value]="info.nombre" />
-          </div>
-          <div class="group">
-            <label>Apellidos:</label>
-            <input readonly [value]="info.apellido" />
-          </div>
-          <div class="group">
-            <label>Fecha de nacimiento:</label>
-            <input readonly [value]="snipDate(info.fechaNacimiento)" />
-          </div>
-          <div class="group">
-            <label>Tipo de documento:</label>
-            <input readonly [value]="showDoc(info.idTipoDoc)" />
-          </div>
-          <div class="group">
-            <label>Nro. Documento:</label>
-            <input readonly [value]="info.documento" />
-          </div>
-          <div class="group">
-            <label>Nro. Contacto:</label>
-            <input readonly [value]="info.contacto" />
-          </div>
-          <div class="group">
-            <label>Correo electrónico:</label>
-            <input readonly [value]="info.correo" />
-          </div>
-          <div class="group">
-            <label>Dirección:</label>
-            <input readonly [value]="info.direccion" />
-          </div>
+  </div>
+
+  <div class="users" *ngIf="userFound != null">
+    <button (click)="desplegar('btnBack')">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Volver
+    </button>
+    <div class="userInfo">
+      <div class="resultGroup" *ngFor="let info of userFound">
+        <h3>Información del usuario</h3>
+        <div class="group">
+          <label>Nombre:</label>
+          <input readonly [value]="info.nombre" />
+        </div>
+        <div class="group">
+          <label>Apellidos:</label>
+          <input readonly [value]="info.apellido" />
+        </div>
+        <div class="group">
+          <label>Fecha de nacimiento:</label>
+          <input readonly [value]="snipDate(info.fechaNacimiento)" />
+        </div>
+        <div class="group">
+          <label>Tipo de documento:</label>
+          <input readonly [value]="showDoc(info.idTipoDoc)" />
+        </div>
+        <div class="group">
+          <label>Nro. Documento:</label>
+          <input readonly [value]="info.documento" />
+        </div>
+        <div class="group">
+          <label>Nro. Contacto:</label>
+          <input readonly [value]="info.contacto" />
+        </div>
+        <div class="group">
+          <label>Correo electrónico:</label>
+          <input readonly [value]="info.correo" />
+        </div>
+        <div class="group">
+          <label>Dirección:</label>
+          <input readonly [value]="info.direccion" />
         </div>
       </div>
     </div>
-  </ng-template>
+  </div>
+
+  <div class="message-container">
+    <div class="message">
+      <app-modal-registro class="hide" (propagar)="apiResponse($event)">
+        <p id="msg"></p>
+      </app-modal-registro>
+    </div>
+  </div>
 </div>
