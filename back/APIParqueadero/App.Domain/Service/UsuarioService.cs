@@ -46,9 +46,18 @@ namespace App.Domain.Service
         #region Crear
         public UsuarioDTO Crear(UsuarioDTO dto)
         {
-            var usuario = _mapper.Map<Usuario>(dto);
-            var data = _usuarioRepository.Crear(usuario);
-            return _mapper.Map<UsuarioDTO>(data);
+            var usuarioExist = _usuarioRepository.Buscar(dto.Documento);
+            if (usuarioExist == null)
+            {
+                var usuario = _mapper.Map<Usuario>(dto);
+                var data = _usuarioRepository.Crear(usuario);
+                return _mapper.Map<UsuarioDTO>(data);
+            } 
+            else
+            {
+                throw new ApplicationException();
+            }
+
         }
         #endregion
 

@@ -43,19 +43,27 @@ export class ModalRegistroComponent implements OnInit {
 
   result!: IResponse;
   onSubmit() {
-    console.log(this.addUser.value);
     this.userService.registrar(this.addUser.value).subscribe(
+      res => console.log(res)
+      
+      
       // res => this.result = res
-      res => () => {
-        this.result = res;
-        if (this.result.code == '200') {
-          this.propagar.emit('Cliente registrado con éxito');
-        } else {
-          this.propagar.emit('Cliente no registrado');
-        }
-      }
+        // res => console.log(res)
+        
+      // () => {
+      //   console.log(res);
+      //   // console.log(res.header);
+      //   // console.log(res.code);
+      //   this.result = res;
+
+      //   if (res.code == 200) {
+      //     this.propagar.emit('Cliente registrado con éxito');
+      //   } else if (res.code == 400) {
+      //     this.propagar.emit('Cliente no registrado');
+      //   }
+      // }
     )
-    this.propagar.emit('hideAddForm');
+    // this.propagar.emit('hideAddForm');
   }
 
 

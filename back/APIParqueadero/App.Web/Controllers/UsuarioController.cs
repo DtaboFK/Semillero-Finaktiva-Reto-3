@@ -74,6 +74,12 @@ namespace App.Web.Controllers
                 response.Data = service.Crear(dto);
                 return Ok(response.Header);
             }
+            catch (ApplicationException ex)
+            {
+                response.Header.Code = HttpCodes.NotApproved;
+                response.Header.Message = "El usuario ya existe";
+                return BadRequest(response);
+            }
             catch (Exception ex)
             {
                 response.Header.Code = HttpCodes.NotFound;

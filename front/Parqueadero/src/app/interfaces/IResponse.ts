@@ -1,4 +1,4 @@
 export class IResponse {
-    code!: string;
-    header!: string;
+    code!: number;
+    message!: string;   
 }
