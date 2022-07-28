@@ -68,39 +68,39 @@
       Volver
     </button>
     <div class="userInfo">
-      <div class="resultGroup" *ngFor="let info of userFound">
+      <div class="resultGroup">
         <h3>Información del usuario</h3>
         <div class="group">
           <label>Nombre:</label>
-          <input readonly [value]="info.nombre" />
+          <input readonly [value]="userFound.Nombre" />
         </div>
         <div class="group">
           <label>Apellidos:</label>
-          <input readonly [value]="info.apellido" />
+          <input readonly [value]="userFound.Apellido" />
         </div>
         <div class="group">
           <label>Fecha de nacimiento:</label>
-          <input readonly [value]="snipDate(info.fechaNacimiento)" />
+          <input readonly [value]="snipDate(userFound.FechaNacimiento)" />
         </div>
         <div class="group">
           <label>Tipo de documento:</label>
-          <input readonly [value]="showDoc(info.idTipoDoc)" />
+          <input readonly [value]="showDoc(userFound.IdTipoDoc)" />
         </div>
         <div class="group">
           <label>Nro. Documento:</label>
-          <input readonly [value]="info.documento" />
+          <input readonly [value]="userFound.Documento" />
         </div>
         <div class="group">
           <label>Nro. Contacto:</label>
-          <input readonly [value]="info.contacto" />
+          <input readonly [value]="userFound.Contacto" />
         </div>
         <div class="group">
           <label>Correo electrónico:</label>
-          <input readonly [value]="info.correo" />
+          <input readonly [value]="userFound.Correo" />
         </div>
         <div class="group">
           <label>Dirección:</label>
-          <input readonly [value]="info.direccion" />
+          <input readonly [value]="userFound.Direccion" />
         </div>
       </div>
     </div>

@@ -1,9 +1,15 @@
 export class IResponse {
-    Header = new Header;
-    Data!: string | string[];
+    
+    header!: Header;
+    data!: string | string[];
+
+    constructor() {
+        this.header = new Header();
+    }
+
 }
 
 export class Header {
-    Code!: number;
-    Message!: string;
+    code!: number;
+    message!: string;
 }
