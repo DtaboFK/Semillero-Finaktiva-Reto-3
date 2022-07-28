@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IResponse } from 'src/app/interfaces/IResponse';
+import { IUsuario } from 'src/app/interfaces/IUsuario';
 
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
@@ -44,7 +45,7 @@ export class UsuariosComponent implements OnInit {
 
   apiRes!: IResponse;
   apiResponse(response: IResponse) {
-    this.apiRes.Header = response.Header;
+    this.apiRes.header = response.header;
   }
 
   // Presentación de datos

@@ -138,7 +138,39 @@ section {
   margin-right: 1rem;
 }
 
-.message-container .message {
+.message-container .successMessage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+  border: 2px solid var(--color-dark-success);
+  background-color: var(--color-success);
+}
+
+.message-container .successMessage p {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--color-dark-success);
+}
+
+.message-container .infoMessage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+  border: 2px solid var(--color-blue);
+  background-color: var(--color-info);
+}
+
+.message-container .infoMessage p {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--color-blue);
+}
+
+.message-container .warnMessage {
   width: 100%;
   display: flex;
   align-items: center;
@@ -148,9 +180,29 @@ section {
   background-color: var(--color-warning);
 }
 
-.message-container .message p {
-  font-weight: 600;
-  font-size: 1rem;
+.message-container .warnMessage p {
+  font-weight: 500;
+  font-size: 0.8rem;
   color: var(--color-accent);
 }
+
+.message-container .dangerMessage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+  border: 2px solid var(--color-dark-danger);
+  background-color: var(--color-danger);
+}
+
+.message-container .dangerMessage p {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--color-white);
+}
 /* ========== Api Message Style End ========== */
+
+.hide {
+  display: none;
+}

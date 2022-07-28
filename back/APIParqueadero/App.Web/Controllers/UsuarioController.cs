@@ -72,11 +72,22 @@ namespace App.Web.Controllers
             try
             {
                 response.Data = service.Crear(dto);
-                return Ok(response);
+                if (response.Data != null)
+                {
+                    response.Header.Code = HttpCodes.Ok;
+                    response.Header.Message = "¡Cliente registrado!";
+                    return Ok(response);
+                }
+                else
+                {
+                    response.Header.Code = HttpCodes.NotApproved;
+                    response.Header.Message = "Algo salió mal";
+                    return Ok(response);
+                }
             }
             catch (ApplicationException)
             {
-                response.Header.Code = HttpCodes.NotApproved;
+                response.Header.Code = HttpCodes.NotFound;
                 response.Header.Message = "El usuario ya existe";
                 return  Ok(response);
             }

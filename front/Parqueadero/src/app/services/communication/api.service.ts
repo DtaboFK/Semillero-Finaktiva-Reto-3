@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { IResponse } from "../../interfaces/IResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -6,4 +7,7 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   constructor() { }
+
+  $com = new EventEmitter<IResponse>();
+
 }

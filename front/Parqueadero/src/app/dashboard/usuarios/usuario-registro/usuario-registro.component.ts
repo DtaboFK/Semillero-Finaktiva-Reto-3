@@ -5,6 +5,7 @@ import { TipoDocumento } from "../../../models/TipoDocumento";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { IResponse } from 'src/app/interfaces/IResponse';
+import { ApiService } from 'src/app/services/communication/api.service';
 
 @Component({
   selector: 'app-modal-registro',
@@ -22,7 +23,7 @@ export class ModalRegistroComponent implements OnInit {
     { IdTipoDoc: 4, TipoDoc: 'Pasaporte' },
   ];
 
-  constructor(private readonly fb: FormBuilder, private userService: UsuarioService) { }
+  constructor(private readonly fb: FormBuilder, private userService: UsuarioService, private apiRes: ApiService) { }
 
   ngOnInit(): void {
     this.addUser = this.initForm();
@@ -41,18 +42,19 @@ export class ModalRegistroComponent implements OnInit {
     })
   }
 
-  @Output() apiResponse = new EventEmitter<IResponse>();
   result!: IResponse;
   onSubmit() {
     this.userService.registrar(this.addUser.value).subscribe(
       // res => console.log(res)
-      res => this.result = res
-    )
-    this.apiResponse.emit(this.result);
-    this.propagar.emit('hideAddForm');
+      // res => this.result = res
+      (res) => {
+        this.result = res;
+        this.apiRes.$com.emit(this.result);
+        this.propagar.emit('hideAddForm');
+      }
+    );
+    
   }
-
-
 
   // Navegabilidad
   @Output() propagar = new EventEmitter<string>();

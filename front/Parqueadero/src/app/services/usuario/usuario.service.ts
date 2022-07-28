@@ -19,8 +19,8 @@ export class UsuarioService {
     return this.http.get<IUsuario[]>(this.uriListar);
   }
 
-  buscar(user: any): Observable<IUsuario[]> {
-    return this.http.post<IUsuario[]>(this.uriBuscar, user);
+  buscar(user: any): Observable<IUsuario> {
+    return this.http.post<IUsuario>(this.uriBuscar, user);
   }
 
   registrar(user: any): Observable<IResponse> {
