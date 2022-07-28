@@ -1,4 +1,9 @@
 export class IResponse {
-    code!: number;
-    message!: string;   
+    Header = new Header;
+    Data!: string | string[];
+}
+
+export class Header {
+    Code!: number;
+    Message!: string;
 }

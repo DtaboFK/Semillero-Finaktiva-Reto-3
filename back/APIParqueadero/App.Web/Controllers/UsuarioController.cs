@@ -47,12 +47,12 @@ namespace App.Web.Controllers
                 response.Data = service.Buscar(dto);
                 if (response.Data.Count == 1)
                 {
-                    return Ok(response.Data);
+                    return Ok(response);
                 }
                 else
                 {
                     response.Header.Code = HttpCodes.NotFound;
-                    return NotFound(response.Header);
+                    return Ok(response);
                 }
             }
             catch (Exception ex)
@@ -72,19 +72,19 @@ namespace App.Web.Controllers
             try
             {
                 response.Data = service.Crear(dto);
-                return Ok(response.Header);
+                return Ok(response);
             }
-            catch (ApplicationException ex)
+            catch (ApplicationException)
             {
                 response.Header.Code = HttpCodes.NotApproved;
                 response.Header.Message = "El usuario ya existe";
-                return BadRequest(response);
+                return  Ok(response);
             }
             catch (Exception ex)
             {
                 response.Header.Code = HttpCodes.NotFound;
                 response.Header.Message = ex.Message;
-                return NotFound(response);
+                return NotFound(ex);
             }
         }
         #endregion

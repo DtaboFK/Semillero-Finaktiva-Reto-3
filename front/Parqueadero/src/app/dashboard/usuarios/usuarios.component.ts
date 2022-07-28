@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IResponse } from 'src/app/interfaces/IResponse';
 
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
@@ -41,8 +42,9 @@ export class UsuariosComponent implements OnInit {
     lista?.classList.toggle('hide');
   }
 
-  apiResponse(msg: string) {
-    console.log(msg);
+  apiRes!: IResponse;
+  apiResponse(response: IResponse) {
+    this.apiRes.Header = response.Header;
   }
 
   // Presentación de datos

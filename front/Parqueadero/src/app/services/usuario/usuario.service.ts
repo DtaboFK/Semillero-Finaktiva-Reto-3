@@ -24,7 +24,7 @@ export class UsuarioService {
   }
 
   registrar(user: any): Observable<IResponse> {
-    return this.http.post<IResponse>(this.uriCrear, user); 
+    return this.http.post<IResponse>(this.uriCrear, user);
   }
 
 }
