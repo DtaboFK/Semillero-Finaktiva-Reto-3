@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IResponse } from 'src/app/interfaces/IResponse';
 
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
@@ -10,7 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 })
 export class UsuariosComponent implements OnInit {
 
-  usuarios!: any;
+  usuarios: any[] = [];
   columnas: string[] = ['Nro', 'Nombre', 'Apellidos', 'Nro. Documento', 'Acciones'];
   searchText!: string;
 
@@ -41,8 +42,9 @@ export class UsuariosComponent implements OnInit {
     lista?.classList.toggle('hide');
   }
 
-  apiResponse(msg: string) {
-    console.log(msg);
+  apiRes!: IResponse;
+  apiResponse(response: IResponse) {
+    this.apiRes.Header = response.Header;
   }
 
   // Presentación de datos
@@ -97,6 +99,7 @@ export class UsuariosComponent implements OnInit {
         addForm?.classList.toggle('hide');
         lista?.classList.toggle('hide');
         main?.classList.toggle('hide');
+        this.listar();
         break;
 
       default:

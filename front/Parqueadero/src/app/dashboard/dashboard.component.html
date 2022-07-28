@@ -1,36 +1,47 @@
 <section>
-    <div class="modules">
-        <div class="top">
-            <span class="material-symbols-rounded">local_parking</span>
-            <h3>{{ title }}</h3>
-        </div>
-        <div class="buttons">
-            <button (click)="desplegar('usuario')">
-                <span class="material-symbols-outlined">group</span>Usuarios
-            </button>
-            <button (click)="desplegar('ingreso')">
-                <span class="material-symbols-outlined">assignment</span>Ingresos
-            </button>
-            <button (click)="desplegar('inbox')">
-                <span class="material-symbols-outlined">inbox</span>Inbox
-            </button>
-            <button (click)="desplegar('logout')">
-                <span class="material-symbols-outlined">logout</span>Logout
-            </button>
-        </div>
+  <div class="modules">
+    <div class="top">
+      <span class="material-symbols-rounded">local_parking</span>
+      <h3>{{ title }}</h3>
     </div>
-    <div class="main">
-        <app-usuarios *ngIf="option == 'usuario'"></app-usuarios>
+    <div class="buttons">
+      <button (click)="desplegar('usuario')">
+        <span class="material-symbols-outlined">group</span>Usuarios
+      </button>
+      <button (click)="desplegar('ingreso')">
+        <span class="material-symbols-outlined">assignment</span>Ingresos
+      </button>
+      <button (click)="desplegar('mensualidad')">
+        <span class="material-symbols-outlined">calendar_month</span
+        >Mensualidades
+      </button>
+      <button (click)="desplegar('logout')">
+        <span class="material-symbols-outlined">logout</span>Logout
+      </button>
     </div>
-    <div class="profile">
-        <div class="userInfo">
-            <div class="message">
-                <p>Hola, <b>Nombre</b></p>
-                <span>Rol</span>
-            </div>
-            <div class="pic">
-                <span class="material-symbols-rounded">account_circle</span>
-            </div>
-        </div>
+  </div>
+  <div class="main">
+    <app-usuarios *ngIf="option == 'usuario'"></app-usuarios>
+  </div>
+  <div class="profile">
+    <div class="userInfo">
+      <div class="message">
+        <p>Hola, <b>Nombre</b></p>
+        <span>Rol</span>
+      </div>
+      <div class="pic">
+        <span class="material-symbols-rounded">account_circle</span>
+      </div>
     </div>
+    <!-- Api Message -->
+    <div class="message-container">
+      <div class="message">
+        <p>Aquí sale el mensaje</p>
+        <!-- <app-modal-registro class="hide" (apiResponse)="apiResponse($event)"></app-modal-registro> -->
+        <!-- <p id="msg"> {{ apiRes }}</p> -->
+        
+      </div>
+    </div>
+  </div>
+  
 </section>

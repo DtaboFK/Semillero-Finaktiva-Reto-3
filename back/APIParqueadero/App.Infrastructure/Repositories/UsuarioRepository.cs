@@ -14,6 +14,7 @@ namespace App.Infrastructure.Repositories
         List<Usuario> Listar();
         List<Usuario> Buscar(Usuario doc);
         Usuario Crear(Usuario usuario);
+        Usuario Buscar(string doc);
     }
     public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
     {
@@ -32,6 +33,11 @@ namespace App.Infrastructure.Repositories
         public List<Usuario> Buscar(Usuario doc)
         {
             return _table.Where(item => item.Documento == doc.Documento).ToList();
+        }
+
+        public Usuario Buscar(string doc)
+        {
+            return _table.Where(item => item.Documento == doc).FirstOrDefault();
         }
         #endregion
 

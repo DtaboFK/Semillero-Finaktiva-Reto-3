@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IResponse } from 'src/app/interfaces/IResponse';
 import { IUsuario } from 'src/app/interfaces/IUsuario';
 
@@ -25,6 +25,6 @@ export class UsuarioService {
 
   registrar(user: any): Observable<IResponse> {
     return this.http.post<IResponse>(this.uriCrear, user);
-  } 
+  }
 
 }

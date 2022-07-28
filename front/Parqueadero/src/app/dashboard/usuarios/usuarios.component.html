@@ -37,6 +37,7 @@
           </tr>
         </thead>
         <tbody>
+          <td *ngIf="usuarios.length == 0" colspan="5">No hay clientes registrados</td>
           <tr *ngFor="let user of usuarios | filter: searchText">
             <td>{{ user.idUsuario }}</td>
             <td>{{ user.nombre }}</td>
@@ -102,14 +103,6 @@
           <input readonly [value]="info.direccion" />
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="message-container">
-    <div class="message">
-      <app-modal-registro class="hide" (propagar)="apiResponse($event)">
-        <p id="msg"></p>
-      </app-modal-registro>
     </div>
   </div>
 </div>
