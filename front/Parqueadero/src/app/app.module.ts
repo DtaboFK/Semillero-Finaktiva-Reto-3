@@ -17,7 +17,6 @@ import { UsuariosComponent } from './dashboard/usuarios/usuarios.component';
 
 import { UsuarioService } from './services/usuario/usuario.service';
 import { ModalRegistroComponent } from './dashboard/usuarios/usuario-registro/usuario-registro.component';
-import { VehiculoRegistroComponent } from './dashboard/usuarios/vehiculo-registro/vehiculo-registro.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,8 +32,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     DashboardComponent,
     UsuariosComponent,
-    ModalRegistroComponent,
-    VehiculoRegistroComponent
+    ModalRegistroComponent
   ],
   imports: [
     BrowserModule,

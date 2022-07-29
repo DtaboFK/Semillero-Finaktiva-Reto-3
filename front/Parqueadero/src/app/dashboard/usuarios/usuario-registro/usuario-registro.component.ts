@@ -53,7 +53,7 @@ export class ModalRegistroComponent implements OnInit {
         this.propagar.emit('hideAddForm');
       }
     );
-    
+    this.addUser.reset();
   }
 
   // Navegabilidad

@@ -47,7 +47,7 @@
               <button (click)="buscar(user.documento)">
                 <span class="material-symbols-outlined">visibility</span>
               </button>
-              <button>
+              <button (click)="deployEdit(user.documento)">
                 <span class="material-symbols-outlined">edit</span>
               </button>
               <button>
@@ -67,42 +67,264 @@
       <span class="material-symbols-outlined">arrow_back</span>
       Volver
     </button>
-    <div class="userInfo">
-        <div class="resultGroup">
-          <h3>Información del usuario</h3>
-          <div class="group">
-            <label>Nombre:</label>
-            <input readonly [value]="userFound.nombre" />
-          </div>
-          <div class="group">
-            <label>Apellidos:</label>
-            <input readonly [value]="userFound.apellido" />
-          </div>
-          <div class="group">
-            <label>Fecha de nacimiento:</label>
-            <input readonly [value]="snipDate(userFound.fechaNacimiento)" />
-          </div>
-          <div class="group">
-            <label>Tipo de documento:</label>
-            <input readonly [value]="showDoc(userFound.idTipoDoc)" />
-          </div>
-          <div class="group">
-            <label>Nro. Documento:</label>
-            <input readonly [value]="userFound.documento" />
-          </div>
-          <div class="group">
-            <label>Nro. Contacto:</label>
-            <input readonly [value]="userFound.contacto" />
-          </div>
-          <div class="group">
-            <label>Correo electrónico:</label>
-            <input readonly [value]="userFound.correo" />
-          </div>
-          <div class="group">
-            <label>Dirección:</label>
-            <input readonly [value]="userFound.direccion" />
-          </div>
+    <div class="userInfo" *ngIf="edit == false">
+      <div class="resultGroup">
+        <h3>Información del usuario</h3>
+        <div class="group">
+          <label>Nombre:</label>
+          <input readonly [value]="userFound.nombre" />
         </div>
+        <div class="group">
+          <label>Apellidos:</label>
+          <input readonly [value]="userFound.apellido" />
+        </div>
+        <div class="group">
+          <label>Fecha de nacimiento:</label>
+          <input
+            readonly
+            [value]="snipDate(userFound.fechaNacimiento)"
+            *ngIf="edit == false"
+          />
+        </div>
+        <div class="group">
+          <label>Tipo de documento:</label>
+          <input readonly [value]="showDoc(userFound.idTipoDoc)" />
+        </div>
+        <div class="group">
+          <label>Nro. Documento:</label>
+          <input readonly [value]="userFound.documento" />
+        </div>
+        <div class="group">
+          <label>Nro. Contacto:</label>
+          <input readonly [value]="userFound.contacto" />
+        </div>
+        <div class="group">
+          <label>Correo electrónico:</label>
+          <input readonly [value]="userFound.correo" />
+        </div>
+        <div class="group">
+          <label>Dirección:</label>
+          <input readonly [value]="userFound.direccion" />
+        </div>
+      </div>
     </div>
+    <!-- Edit form -->
+    <form class="userInfo" (ngSubmit)="onUpdate()" *ngIf="edit == true" [formGroup]="editUser">
+      <div class="resultGroup">
+        <h3>Actualizar información del usuario</h3>
+        <input type="hidden" id="editIdUser" [value]="userEditFound.idUsuario" />
+        <div class="group">
+          <label>Nombre:</label>
+          <input
+            type="text"
+            [value]="userEditFound.nombre"
+            formControlName="Nombre"
+            [class.invalid]="editUser.get('Nombre')?.touched && 
+                    editUser.get('Nombre')?.errors?.['required']"
+            [class.invalid]="editUser.get('Nombre')?.touched && 
+                    editUser.get('Nombre')?.errors?.['pattern']"
+            [class.valid]="!(editUser.get('Nombre')?.touched && 
+                    editUser.get('Nombre')?.errors?.['required']) && 
+                    editUser.get('Nombre')?.valid"
+          />
+          <p
+            *ngIf="editUser.get('Nombre')?.touched &&
+                    editUser.get('Nombre')?.errors?.['required']"
+          >
+            Este campo es requerido
+          </p>
+          <p
+            *ngIf="editUser.get('Nombre')?.touched && 
+                    editUser.get('Nombre')?.errors?.['pattern']"
+          >
+            No se permiten números
+          </p>
+        </div>
+        <div class="group">
+          <label>Apellidos:</label>
+          <input
+            type="text"
+            [value]="userEditFound.apellido"
+            formControlName="Apellido"
+            [class.invalid]="editUser.get('Apellido')?.touched && 
+                    editUser.get('Apellido')?.errors?.['required']"
+            [class.invalid]="editUser.get('Apellido')?.touched && 
+                    editUser.get('Apellido')?.errors?.['pattern']"
+            [class.valid]="!(editUser.get('Apellido')?.touched && 
+                    editUser.get('Apellido')?.errors?.['required']) && 
+                    editUser.get('Apellido')?.valid"
+          />
+          <p
+            *ngIf="editUser.get('Apellido')?.touched &&
+                    editUser.get('Apellido')?.errors?.['required']"
+          >
+            Este campo es requerido
+          </p>
+          <p
+            *ngIf="editUser.get('Apellido')?.touched && 
+                    editUser.get('Apellido')?.errors?.['pattern']"
+          >
+            No se permiten números
+          </p>
+        </div>
+        <div class="group">
+          <label>Fecha de nacimiento:</label>
+          <input
+            type="date"
+            [value]="snipDate(userEditFound.fechaNacimiento)"
+            formControlName="FechaNacimiento"
+            [class.invalid]="editUser.get('FechaNacimiento')?.touched && 
+                    editUser.get('FechaNacimiento')?.errors?.['required']"
+            [class.valid]="!(editUser.get('FechaNacimiento')?.touched && 
+                    editUser.get('FechaNacimiento')?.errors?.['required']) && 
+                    editUser.get('FechaNacimiento')?.valid"
+          />
+          <p
+            *ngIf="editUser.get('FechaNacimiento')?.touched && 
+                    editUser.get('FechaNacimiento')?.errors?.['required']"
+          >
+            Este campo es requerido
+          </p>
+        </div>
+        <div class="group">
+          <label>Tipo de documento:</label>
+          <input readonly [value]="showDoc(userEditFound.idTipoDoc)" />
+          <select
+            name="editTipoDoc"
+            id="editTipoDoc"
+            formControlName="IdTipoDoc"
+            [class.invalid]="
+              editUser.get('IdTipoDoc')?.touched &&
+              editUser.get('IdTipoDoc')?.pristine
+            "
+            [class.valid]="!editUser.get('IdTipoDoc')?.touched"
+          >
+            <option [value]="userEditFound.documento" selected disabled>
+              {{ showDoc(userEditFound.idTipoDoc) }}
+            </option>
+            <option *ngFor="let dni of typesDNI" value="{{ dni.IdTipoDoc }}">
+              {{ dni.TipoDoc }}
+            </option>
+          </select>
+          <p
+            *ngIf="
+              editUser.get('IdTipoDoc')?.touched &&
+              editUser.get('IdTipoDoc')?.pristine
+            "
+          >
+            Este campo es requerido
+          </p>
+        </div>
+        <div class="group">
+          <label>Nro. Documento:</label>
+          <input readonly [value]="userEditFound.documento" />
+          <input
+            type="text"
+            [value]="userEditFound.documento"
+            formControlName="Documento"
+            [class.invalid]="editUser.get('Documento')?.touched && 
+                    editUser.get('Documento')?.errors?.['required']"
+            [class.invalid]="editUser.get('Documento')?.touched && 
+                    editUser.get('Documento')?.errors?.['pattern']"
+            [class.valid]="!(editUser.get('Documento')?.touched && 
+                    editUser.get('Documento')?.errors?.['required']) && 
+                    editUser.get('Documento')?.valid"
+          />
+          <p
+            *ngIf="editUser.get('Documento')?.touched && 
+                    editUser.get('Documento')?.errors?.['required']"
+          >
+            Este campo es requerido
+          </p>
+          <p
+            *ngIf="editUser.get('Documento')?.touched && 
+                    editUser.get('Documento')?.errors?.['pattern']"
+          >
+            No se permiten letras
+          </p>
+        </div>
+        <div class="group">
+          <label>Nro. Contacto:</label>
+          <input readonly [value]="userEditFound.contacto" />
+          <input
+            type="text"
+            [value]="userEditFound.contacto"
+            formControlName="Contacto"
+            [class.invalid]="editUser.get('Contacto')?.touched && 
+                    editUser.get('Contacto')?.errors?.['required']"
+            [class.invalid]="editUser.get('Contacto')?.touched && 
+                    editUser.get('Contacto')?.errors?.['pattern']"
+            [class.valid]="!(editUser.get('Contacto')?.touched && 
+                    editUser.get('Contacto')?.errors?.['required']) && 
+                    editUser.get('Contacto')?.valid"
+          />
+          <p
+            *ngIf="editUser.get('Contacto')?.touched && 
+                    editUser.get('Contacto')?.errors?.['required']"
+          >
+            Este campo es requerido
+          </p>
+          <p
+            *ngIf="editUser.get('Contacto')?.touched && 
+                    editUser.get('Contacto')?.errors?.['pattern']"
+          >
+            No se permiten letras
+          </p>
+        </div>
+        <div class="group">
+          <label>Correo electrónico:</label>
+          <input readonly [value]="userEditFound.correo" />
+          <input
+            type="email"
+            [value]="userEditFound.correo"
+            formControlName="Correo"
+            [class.invalid]="editUser.get('Correo')?.touched && 
+                    editUser.get('Correo')?.errors?.['required']"
+            [class.invalid]="editUser.get('Correo')?.touched && 
+                    editUser.get('Correo')?.errors?.['pattern']"
+            [class.valid]="!(editUser.get('Correo')?.touched && 
+                    editUser.get('Correo')?.errors?.['required']) && 
+                    editUser.get('Correo')?.valid"
+          />
+          <p
+            *ngIf="editUser.get('Correo')?.touched && 
+                    editUser.get('Correo')?.errors?.['required']"
+          >
+            Este campo es requerido
+          </p>
+          <p
+            *ngIf="editUser.get('Correo')?.touched && 
+                    editUser.get('Correo')?.errors?.['pattern']"
+          >
+            Ingrese un correo válido
+          </p>
+        </div>
+        <div class="group">
+          <label>Dirección:</label>
+          <input readonly [value]="userEditFound.direccion" />
+          <input
+            type="text"
+            [value]="userEditFound.direccion"
+            formControlName="Direccion"
+            [class.invalid]="editUser.get('Direccion')?.touched && 
+                    editUser.get('Direccion')?.errors?.['required']"
+            [class.invalid]="editUser.get('Direccion')?.touched && 
+                    editUser.get('Direccion')?.errors?.['pattern']"
+            [class.valid]="!(editUser.get('Direccion')?.touched && 
+                    editUser.get('Direccion')?.errors?.['required']) && 
+                    editUser.get('Direccion')?.valid"
+          />
+          <p
+            *ngIf="editUser.get('Direccion')?.touched && 
+                    editUser.get('Direccion')?.errors?.['required']"
+          >
+            Este campo es requerido
+          </p>
+        </div>
+        <div class="group">
+          <button type="submit" class="btn" [disabled]="editUser.invalid">Enviar</button>
+      </div>
+      </div>
+    </form>
   </div>
 </div>
