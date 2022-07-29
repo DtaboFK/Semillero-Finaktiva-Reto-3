@@ -15,6 +15,7 @@ namespace App.Domain.Service
         List<UsuarioDTO> Listar();
         List<UsuarioDTO> Buscar(UsuarioDTO dto);
         UsuarioDTO Crear(UsuarioDTO dto);
+        UsuarioDTO Actualizar(UsuarioDTO dto);
     }
     public class UsuarioService : IUsuarioService
     {
@@ -58,6 +59,15 @@ namespace App.Domain.Service
                 throw new ApplicationException();
             }
 
+        }
+        #endregion
+
+        #region Actualizar
+        public UsuarioDTO Actualizar(UsuarioDTO dto)
+        {
+            Usuario user = _mapper.Map<Usuario>(dto);
+            user = _usuarioRepository.Actualizar(user);
+            return _mapper.Map<UsuarioDTO>(user);
         }
         #endregion
 
