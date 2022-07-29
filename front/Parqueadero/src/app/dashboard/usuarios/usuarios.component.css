@@ -94,7 +94,7 @@
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 0.5rem;
   border: 2px solid var(--color-black);
   border-radius: 1rem;
   background-color: var(--color-light-gray);
@@ -102,10 +102,10 @@
 
 .users .userInfo .resultGroup {
   width: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2.3rem;
+  gap: 2rem;
 }
 
 .users .userInfo .resultGroup h3 {
@@ -135,6 +135,27 @@ p {
 .group input:focus,
 select:focus {
   outline: 3px solid var(--color-white);
+}
+
+.group p {
+  width: fit-content;
+  padding: 0 0.3rem;
+  border-radius: 5px;
+  top: 1.5rem;
+  right: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-white);
+  background-color: var(--color-danger);
+}
+
+.group .btn {
+  padding: 0.8rem;
+  background-color: var(--color-gray);
+}
+
+.group .btn:hover {
+  background-color: var(--color-blue);
 }
 
 /* ========== Users Style Start ========== */
@@ -236,6 +257,14 @@ select:focus {
 }
 
 /* ========== Table Style End ========== */
+
+.valid {
+  outline: 3px solid var(--color-success);
+}
+
+.invalid {
+  outline: 3px solid var(--color-danger);
+}
 
 .hide {
   display: none;
