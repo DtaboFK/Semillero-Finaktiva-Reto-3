@@ -1,7 +1,10 @@
+import { IUsuario } from "./IUsuario";
+
 export class IResponse {
     
     header!: Header;
-    data!: string | string[];
+    data!: IUsuario[];
+    // data!: string | string[];
 
     constructor() {
         this.header = new Header();

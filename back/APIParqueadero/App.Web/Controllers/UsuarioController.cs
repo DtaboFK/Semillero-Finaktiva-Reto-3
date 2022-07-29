@@ -26,7 +26,7 @@ namespace App.Web.Controllers
             try
             {
                 response.Data = service.Listar();
-                return Ok(response.Data);
+                return Ok(response);
             }
             catch (Exception ex)
             {

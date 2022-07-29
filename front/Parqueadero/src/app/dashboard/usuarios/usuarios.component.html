@@ -13,23 +13,23 @@
             type="text"
             name="seach"
             id="search"
-            placeholder="Buscar Nro. documento"
+            placeholder="Buscar cliente"
             [(ngModel)]="searchText"
           />
         </form>
-        <p id="error" class="hide">Usuario no encontrado</p>
+        <p id="error" class="hide">Cliente no encontrado</p>
       </div>
       <!-- Add user -->
       <div class="addUser">
         <button (click)="desplegar('addUser')">
           <span class="material-symbols-outlined">person_add</span>
-          Agregar Usuario
+          Agregar Cliente
         </button>
       </div>
     </div>
     <!-- Users list -->
     <div class="table" id="lista">
-      <h3>Usuarios</h3>
+      <h3>Clientes</h3>
       <table>
         <thead>
           <tr>
@@ -37,8 +37,8 @@
           </tr>
         </thead>
         <tbody>
-          <td *ngIf="usuarios.length == 0" colspan="5">No hay clientes registrados</td>
-          <tr *ngFor="let user of usuarios | filter: searchText">
+          <td *ngIf="long == 0" colspan="5">No hay clientes registrados</td>
+          <tr *ngFor="let user of lista | filter: searchText">
             <td>{{ user.idUsuario }}</td>
             <td>{{ user.nombre }}</td>
             <td>{{ user.apellido }}</td>
@@ -62,47 +62,47 @@
     </div>
   </div>
 
-  <div class="users" *ngIf="userFound != null">
+  <div class="users" *ngIf="userLong > 0">
     <button (click)="desplegar('btnBack')">
       <span class="material-symbols-outlined">arrow_back</span>
       Volver
     </button>
     <div class="userInfo">
-      <div class="resultGroup">
-        <h3>Información del usuario</h3>
-        <div class="group">
-          <label>Nombre:</label>
-          <input readonly [value]="userFound.Nombre" />
+        <div class="resultGroup">
+          <h3>Información del usuario</h3>
+          <div class="group">
+            <label>Nombre:</label>
+            <input readonly [value]="userFound.nombre" />
+          </div>
+          <div class="group">
+            <label>Apellidos:</label>
+            <input readonly [value]="userFound.apellido" />
+          </div>
+          <div class="group">
+            <label>Fecha de nacimiento:</label>
+            <input readonly [value]="snipDate(userFound.fechaNacimiento)" />
+          </div>
+          <div class="group">
+            <label>Tipo de documento:</label>
+            <input readonly [value]="showDoc(userFound.idTipoDoc)" />
+          </div>
+          <div class="group">
+            <label>Nro. Documento:</label>
+            <input readonly [value]="userFound.documento" />
+          </div>
+          <div class="group">
+            <label>Nro. Contacto:</label>
+            <input readonly [value]="userFound.contacto" />
+          </div>
+          <div class="group">
+            <label>Correo electrónico:</label>
+            <input readonly [value]="userFound.correo" />
+          </div>
+          <div class="group">
+            <label>Dirección:</label>
+            <input readonly [value]="userFound.direccion" />
+          </div>
         </div>
-        <div class="group">
-          <label>Apellidos:</label>
-          <input readonly [value]="userFound.Apellido" />
-        </div>
-        <div class="group">
-          <label>Fecha de nacimiento:</label>
-          <input readonly [value]="snipDate(userFound.FechaNacimiento)" />
-        </div>
-        <div class="group">
-          <label>Tipo de documento:</label>
-          <input readonly [value]="showDoc(userFound.IdTipoDoc)" />
-        </div>
-        <div class="group">
-          <label>Nro. Documento:</label>
-          <input readonly [value]="userFound.Documento" />
-        </div>
-        <div class="group">
-          <label>Nro. Contacto:</label>
-          <input readonly [value]="userFound.Contacto" />
-        </div>
-        <div class="group">
-          <label>Correo electrónico:</label>
-          <input readonly [value]="userFound.Correo" />
-        </div>
-        <div class="group">
-          <label>Dirección:</label>
-          <input readonly [value]="userFound.Direccion" />
-        </div>
-      </div>
     </div>
   </div>
 </div>

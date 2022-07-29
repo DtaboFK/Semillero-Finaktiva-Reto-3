@@ -1,11 +1,15 @@
-export interface IUsuario {
-    IdUsuario: number;
-    Nombre: string;
-    Apellido: string;
-    FechaNacimiento: Date;
-    IdTipoDoc: number;
-    Documento: string;
-    Contacto: string;
-    Correo: string;
-    Direccion: string;
+export class IUsuario {
+
+    idUsuario!: number;
+    nombre!: string;
+    apellido!: string;
+    fechaNacimiento!: string;
+    idTipoDoc!: number;
+    documento!: string;
+    contacto!: string;
+    correo!: string;
+    direccion!: string;
+
+    constructor() { }
+
 }
