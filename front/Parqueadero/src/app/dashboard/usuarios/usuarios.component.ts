@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IResponse } from 'src/app/interfaces/IResponse';
 import { IUsuario } from 'src/app/interfaces/IUsuario';
 import { TipoDocumento } from 'src/app/models/TipoDocumento';
+import { ApiService } from 'src/app/services/communication/api.service';
 
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
@@ -24,7 +25,7 @@ export class UsuariosComponent implements OnInit {
     { IdTipoDoc: 4, TipoDoc: 'Pasaporte' },
   ];
 
-  constructor(public readonly userService: UsuarioService, private builder: FormBuilder) { }
+  constructor(public readonly userService: UsuarioService, private builder: FormBuilder, private apiServ: ApiService) { }
 
   result!: IResponse;
   lista!: IUsuario[];
@@ -109,9 +110,15 @@ export class UsuariosComponent implements OnInit {
   }
 
   onUpdate() {
-    let idUsuario = document.getElementById('editIdUser') as HTMLInputElement;
+    this.userService.actualizar(this.editUser.value).subscribe(
+      (res) => {
+        this.apiRes = res;
+        this.apiServ.$com.emit(this.apiRes);
+        this.desplegar('btnBack');
+      }
+    );
+    
   }
-
 
 
   // Api response
