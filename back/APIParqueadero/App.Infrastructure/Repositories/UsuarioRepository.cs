@@ -13,8 +13,9 @@ namespace App.Infrastructure.Repositories
     {
         List<Usuario> Listar();
         List<Usuario> Buscar(Usuario doc);
-        Usuario Crear(Usuario usuario);
         Usuario Buscar(string doc);
+        Usuario Crear(Usuario usuario);
+        Usuario Actualizar(Usuario usuario);
     }
     public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
     {
@@ -51,7 +52,20 @@ namespace App.Infrastructure.Repositories
         #endregion
 
         #region Actualizar
-
+        public Usuario Actualizar(Usuario usuario)
+        {
+            if (usuario == null)
+            {
+                return null;
+            }
+            Usuario user = _table.Find(GetValuePrimaryKey(usuario));
+            if (user != null)
+            {
+                _database.Entry(user).CurrentValues.SetValues(usuario);
+                _database.SaveChanges();
+            }
+            return user;
+        }
         #endregion
 
     }

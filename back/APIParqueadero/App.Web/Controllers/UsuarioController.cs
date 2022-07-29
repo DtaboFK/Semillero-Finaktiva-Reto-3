@@ -100,5 +100,40 @@ namespace App.Web.Controllers
         }
         #endregion
 
+        #region Actualizar
+        [HttpPut]
+        public IActionResult Actualizar(UsuarioDTO dto)
+        {
+            Response<UsuarioDTO> response = new Response<UsuarioDTO>();
+            try
+            {
+                response.Data = service.Actualizar(dto);
+                if (response.Data != null)
+                {
+                    response.Header.Code = HttpCodes.Ok;
+                    response.Header.Message = "¡Cliente actualizado!";
+                    return Ok(response);
+                }
+                else
+                {
+                    response.Header.Code = HttpCodes.NotApproved;
+                    response.Header.Message = "Algo salió mal";
+                    return Ok(response);
+                }
+            }
+            catch (ApplicationException)
+            {
+
+                throw;
+            }
+            catch (Exception ex)
+            {
+                response.Header.Code = HttpCodes.NotFound;
+                response.Header.Message = ex.Message;
+                return NotFound(ex);
+            }
+        }
+        #endregion
+
     }
 }
