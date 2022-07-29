@@ -12,6 +12,7 @@ export class UsuarioService {
   uriListar: string = 'https://localhost:44350/Usuario/Listar';
   uriBuscar: string = 'https://localhost:44350/Usuario/Buscar';
   uriCrear: string = 'https://localhost:44350/Usuario/Crear';
+  uriActualizar: string = 'https://localhost:44350/Usuario/Actualizar';
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +26,10 @@ export class UsuarioService {
 
   registrar(user: any): Observable<IResponse> {
     return this.http.post<IResponse>(this.uriCrear, user);
+  }
+
+  actualizar(user: any): Observable<IResponse> {
+    return this.http.put<IResponse>(this.uriActualizar,user);
   }
 
 }

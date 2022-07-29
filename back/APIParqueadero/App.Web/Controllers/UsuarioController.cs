@@ -101,7 +101,7 @@ namespace App.Web.Controllers
         #endregion
 
         #region Actualizar
-        [HttpPut]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(UsuarioDTO dto)
         {
             Response<UsuarioDTO> response = new Response<UsuarioDTO>();
@@ -123,8 +123,9 @@ namespace App.Web.Controllers
             }
             catch (ApplicationException)
             {
-
-                throw;
+                response.Header.Code = HttpCodes.NotFound;
+                response.Header.Message = "El usuario no se actualizó";
+                return Ok(response);
             }
             catch (Exception ex)
             {
