@@ -24,36 +24,46 @@ export class UsuariosComponent implements OnInit {
     this.userService.listar().subscribe(
       (res) => {
         this.lista = res.data;
-        this.size(this.lista);
+        this.size(this.lista, 1);
         this.result = res;
       }
     );
   }
 
   long!: number;
-  size(lista: IUsuario[]) {
-    this.long = lista.length;
+  size(lista: IUsuario[], opt: number) {
+    if (opt == 1) {
+      this.long = lista.length;
+    } else {
+      this.userLong = lista.length;
+    }
   }
 
   // Funciones CRUD
   listar() {
     this.userService.listar().subscribe(
-      // res => this.usuarios = res
-      res => console.log(res)
+      res => this.lista = res.data
+      // res => console.log(res)
       
     );
   }
 
-  userFound!: any;
+  userFound!: IUsuario;
+  userLong!: number;
   buscar(doc: string) {
     const user: any = {
       Documento: doc
     }
     this.userService.buscar(user).subscribe(
-      res => this.userFound = res
+      // res => this.userFound = res
+      (res) => {
+        let user = res.data;
+        this.size(user, 2);
+        this.userFound = res.data[0];
+      }
     );
-    let lista = document.getElementById('lista');
-    lista?.classList.toggle('hide');
+    let listContainer = document.getElementById('lista') as HTMLElement;
+    listContainer.classList.toggle('hide');
   }
 
   apiRes!: IResponse;
@@ -104,7 +114,7 @@ export class UsuariosComponent implements OnInit {
         break;
 
       case 'btnBack':
-        this.userFound = null;
+        this.userLong = 0;
         this.listar();
         lista?.classList.toggle('hide');
         break;
