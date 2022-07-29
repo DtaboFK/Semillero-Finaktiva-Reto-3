@@ -37,8 +37,8 @@
           </tr>
         </thead>
         <tbody>
-          <td *ngIf="usuarios.length == 0" colspan="5">No hay clientes registrados</td>
-          <tr *ngFor="let user of usuarios | filter: searchText">
+          <td *ngIf="long == 0" colspan="5">No hay clientes registrados</td>
+          <tr *ngFor="let user of lista | filter: searchText">
             <td>{{ user.idUsuario }}</td>
             <td>{{ user.nombre }}</td>
             <td>{{ user.apellido }}</td>

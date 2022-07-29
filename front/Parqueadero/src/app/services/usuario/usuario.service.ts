@@ -15,12 +15,12 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  listar(): Observable<IUsuario[]> {
-    return this.http.get<IUsuario[]>(this.uriListar);
+  listar(): Observable<IResponse> {
+    return this.http.get<IResponse>(this.uriListar);
   }
 
-  buscar(user: any): Observable<IUsuario> {
-    return this.http.post<IUsuario>(this.uriBuscar, user);
+  buscar(user: any): Observable<IResponse> {
+    return this.http.post<IResponse>(this.uriBuscar, user);
   }
 
   registrar(user: any): Observable<IResponse> {

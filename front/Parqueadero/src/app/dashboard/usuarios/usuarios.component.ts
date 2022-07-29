@@ -12,22 +12,35 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 })
 export class UsuariosComponent implements OnInit {
 
-  usuarios: any[] = [];
+  
   columnas: string[] = ['Nro', 'Nombre', 'Apellidos', 'Nro. Documento', 'Acciones'];
   searchText!: string;
 
   constructor(public readonly userService: UsuarioService) { }
 
+  result!: IResponse;
+  lista!: IUsuario[];
   ngOnInit(): void {
     this.userService.listar().subscribe(
-      res => this.usuarios = res
+      (res) => {
+        this.lista = res.data;
+        this.size(this.lista);
+        this.result = res;
+      }
     );
+  }
+
+  long!: number;
+  size(lista: IUsuario[]) {
+    this.long = lista.length;
   }
 
   // Funciones CRUD
   listar() {
     this.userService.listar().subscribe(
-      res => this.usuarios = res
+      // res => this.usuarios = res
+      res => console.log(res)
+      
     );
   }
 
