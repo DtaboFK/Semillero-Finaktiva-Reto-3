@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OperarioService } from 'src/app/services/operario/operario.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent {
 
   login!: FormGroup;
 
-  constructor(private readonly builder: FormBuilder , private router: Router) { }
+  constructor(private readonly builder: FormBuilder , private router: Router, private opServ: OperarioService) { }
 
   ngOnInit(): void {
     this.login = this.initLogin();
@@ -26,6 +27,9 @@ export class LoginComponent {
 
 
   onLogin(): void {
+    this.opServ.login(this.login.value).subscribe(
+      res => console.log(res)
+    );
     console.log(this.login.value);
     this.router.navigate(['dashboard'])
   }
