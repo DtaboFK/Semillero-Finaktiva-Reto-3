@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ITipoDocumento } from 'src/app/interfaces/ITipoDocumento';
+import { OperarioService } from 'src/app/services/operario/operario.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit {
     { IdTipoDoc: 4, TipoDoc: 'Pasaporte' },
   ]
 
-  constructor(private readonly builder: FormBuilder, private readonly router : Router) { }
+  constructor(private readonly builder: FormBuilder, private readonly router : Router, private opServ: OperarioService) { }
 
   ngOnInit(): void {
     this.registerOperario = this.initForm();
@@ -36,7 +37,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.registerOperario.value);
+    // console.log(this.registerOperario.value);
+    this.opServ.register(this.registerOperario.value).subscribe(
+      res => console.log(res)
+    );
     this.router.navigate(['login']);
   }
 
